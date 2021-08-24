@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GC垃圾回收思想 | SimpleMw's Blog</title><meta name="keywords" content="java"><meta name="author" content="Wp"><meta name="copyright" content="Wp"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="垃圾回收是对内存空间的清理，主要是对无引用的对象在堆中的内存空间的释放 回收思想的历程 引用计数法：对堆中的对象的引用数进行计数，遍历所有对象的引用数，若存在&#x3D;0的情况，就对该对象进行释放 缺点：当对象之间存在循环引用的情况时，对象该被清理，但引用数却&gt;0，所以这种方法未被应用于任何一种java虚拟机 tracing算法：从堆栈和静态存储区开始对所有的引用进行遍历，对发现的引用追踪其对象，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GC垃圾回收思想">
+<meta property="og:url" content="https://simplemw.github.io/2020/10/01/java%E5%9F%BA%E7%A1%80-GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%80%9D%E6%83%B3/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="垃圾回收是对内存空间的清理，主要是对无引用的对象在堆中的内存空间的释放 回收思想的历程 引用计数法：对堆中的对象的引用数进行计数，遍历所有对象的引用数，若存在&#x3D;0的情况，就对该对象进行释放 缺点：当对象之间存在循环引用的情况时，对象该被清理，但引用数却&gt;0，所以这种方法未被应用于任何一种java虚拟机 tracing算法：从堆栈和静态存储区开始对所有的引用进行遍历，对发现的引用追踪其对象，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://simplemw.github.io/images/moren.jpg">
+<meta property="article:published_time" content="2020-10-01T00:34:36.000Z">
+<meta property="article:modified_time" content="2021-07-07T03:15:43.021Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://simplemw.github.io/images/moren.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://simplemw.github.io/2020/10/01/java%E5%9F%BA%E7%A1%80-GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%80%9D%E6%83%B3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-07-07 11:15:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">53</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SimpleMw's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">GC垃圾回收思想</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-10-01T00:34:36.000Z" title="Created 2020-10-01 08:34:36">2020-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-07T03:15:43.021Z" title="Updated 2021-07-07 11:15:43">2021-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">java基础相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GC垃圾回收思想"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><ul>
+<li>垃圾回收是对内存空间的清理，主要是对无引用的对象在堆中的内存空间的释放</li>
+<li>回收思想的历程<ul>
+<li>引用计数法：对堆中的对象的引用数进行计数，遍历所有对象的引用数，若存在=0的情况，就对该对象进行释放 缺点：当对象之间存在循环引用的情况时，对象该被清理，但引用数却&gt;0，所以这种方法未被应用于任何一种java虚拟机</li>
+<li>tracing算法：从堆栈和静态存储区开始对所有的引用进行遍历，对发现的引用追踪其对象，直到所有的”活“的对象都被找到，未被找到的就是垃圾，这就解决了上面循环引用的弊端</li>
+<li>清理垃圾 ”标记-清扫“ 方法，对找到的”活“的对象进行标记，对未标记的对象进行 垃圾回收清扫<br>缺点：由于是只对未”活“的对象进行清扫，所以会产生磁盘碎片</li>
+<li>重新对对象分配内存空间，方法名 停止-复制<br>做法：首先是停止程序的运行，(使用标记-清扫)将原堆中活的对象复制到另外一个堆中，在另外一个堆中就会紧凑排列<br>缺点：效率很低，需要两个堆，而且要在两个堆中来回倒腾，生命周期长的对象会在两个堆之间多次来回复制</li>
+<li>为解决两个堆的问题，对堆进行分块处理，复制动作发生在几个大块之间<br>缺点：生命周期长的对象依然需要从一处复制到另一处</li>
+<li>方法基于对象生命周期长短差异的特点 首先是对堆进行分区，新生代、老年代、永久代<ul>
+<li>新创建的对象首先都出现在新生代中，将这个区再进行分块8：1：1的比例分为 eden和survivor0和survivor1</li>
+<li>过程：新产生的对象首先都是出现在eden中，当eden中存满时触发minor Gc，使用前面的（标记-清扫、停止-复制）方法，将eden中存活标记的对象复制到survivor0中，将eden清空</li>
+<li>当survivor0中存满时，此时eden中也有了新的对象，触发minor Gc，将eden和survivo0中的存活的对象复制到survivor1中，然后清空eden和survivor0</li>
+<li>清除完成后，eden和survivor0都是空的，于是将survivor1与survivor0交换</li>
+<li>重复前面的步骤，当survivor1中不足以存放eden和survivo0中的对象时，就将存活对象存放在老年代去</li>
+<li>老年代满的时候就会触发一次 major GC即FULL GC</li>
+<li>永久代一般是存放的静态文件，如java类和方法等，当JVM发现某些类或者方法未被使用就会被回收，这个区域对 垃圾回收的方式要求不高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Wp</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://simplemw.github.io/2020/10/01/java%E5%9F%BA%E7%A1%80-GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%80%9D%E6%83%B3/">https://simplemw.github.io/2020/10/01/java%E5%9F%BA%E7%A1%80-GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%80%9D%E6%83%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="/images/moren.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/04/java%E5%9F%BA%E7%A1%80-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><img class="prev-cover" src="/images/moren.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">设计模式理解</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-IO%E6%B5%81/"><img class="next-cover" src="/images/moren.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">java基本数据流</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Wp</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">53</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/03/springboot-sentinel/" title="整合sentinel"><img src="https://images.wallpaperscraft.com/image/red_white_black_figure_211_1280x1024.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整合sentinel"/></a><div class="content"><a class="title" href="/2021/08/03/springboot-sentinel/" title="整合sentinel">整合sentinel</a><time datetime="2021-08-03T10:12:13.000Z" title="Created 2021-08-03 18:12:13">2021-08-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/06/springBoot-flowable/" title="整合flowable-model"><img src="http://up.36992.com/pic/e6/c5/51/e6c551e768092c8655292d89a4034a74.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整合flowable-model"/></a><div class="content"><a class="title" href="/2021/07/06/springBoot-flowable/" title="整合flowable-model">整合flowable-model</a><time datetime="2021-07-06T10:12:13.000Z" title="Created 2021-07-06 18:12:13">2021-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/11/springBoot-feign/" title="feign配置"><img src="https://images.wallpaperscraft.com/image/surface_paint_white_light_50838_1280x1024.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="feign配置"/></a><div class="content"><a class="title" href="/2021/05/11/springBoot-feign/" title="feign配置">feign配置</a><time datetime="2021-05-11T03:12:13.000Z" title="Created 2021-05-11 11:12:13">2021-05-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Wp</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'd9W5265EmXDB5ijXPtnRCOEA-gzGzoHsz',
+      appKey: 'Wstd6m2mYmEXyYzL5iEourhV',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="255,0,0" opacity="0.3" zIndex="-2" count="120" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数据库mysql连接 | SimpleMw's Blog</title><meta name="keywords" content="Mysql"><meta name="author" content="Wp"><meta name="copyright" content="Wp"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据库连接代码  12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;    Connection con;    Statement stm &#x3D; null;    ResultSet rs &#x3D; null;    &#x2F;&#x2F;根据导入的包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库mysql连接">
+<meta property="og:url" content="https://simplemw.github.io/2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="数据库连接代码  12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;    Connection con;    Statement stm &#x3D; null;    ResultSet rs &#x3D; null;    &#x2F;&#x2F;根据导入的包">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://simplemw.github.io/images/moren.jpg">
+<meta property="article:published_time" content="2020-10-14T00:48:16.000Z">
+<meta property="article:modified_time" content="2021-07-07T03:19:15.767Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://simplemw.github.io/images/moren.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://simplemw.github.io/2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-07-07 11:19:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">53</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SimpleMw's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">数据库mysql连接</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-10-14T00:48:16.000Z" title="Created 2020-10-14 08:48:16">2020-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-07T03:19:15.767Z" title="Updated 2021-07-07 11:19:15">2021-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Mysql%E7%9B%B8%E5%85%B3/">Mysql相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据库mysql连接"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><ul>
+<li>数据库连接代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Connection con;</span><br><span class="line">    Statement stm = <span class="keyword">null</span>;</span><br><span class="line">    ResultSet rs = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//根据导入的包中的Driver路径来写</span></span><br><span class="line">    String driver = <span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line">    String url=<span class="string">&quot;jdbc:mysql://localhost:3306/cloud_data?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&quot;</span>;</span><br><span class="line">    String username=<span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password=<span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    String sql = <span class="string">&quot;select * from dept&quot;</span>;</span><br><span class="line">    String deptname;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//这里会出现异常找不到类 ClassNotFoundException，也即找不到驱动</span></span><br><span class="line">        Class.forName(driver);</span><br><span class="line">        <span class="comment">//获取连接以及获取statement以及后面的执行sql语句都会出现 SQLException 异常</span></span><br><span class="line">        con = DriverManager.getConnection(url,username,password);</span><br><span class="line">        <span class="comment">//创建执行对象</span></span><br><span class="line">        stm = con.createStatement();</span><br><span class="line">        <span class="comment">//查询的结果是放在结果集中的</span></span><br><span class="line">        rs = stm.executeQuery(sql);</span><br><span class="line">        <span class="comment">//此处进行判断是否存在数据</span></span><br><span class="line">        <span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">            deptname = rs.getString(<span class="string">&quot;deptname&quot;</span>);</span><br><span class="line">            System.out.println(deptname);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//关闭结果集</span></span><br><span class="line">        rs.close();</span><br><span class="line">        <span class="comment">//关闭执行对象</span></span><br><span class="line">        stm.close();</span><br><span class="line">        <span class="comment">//关闭连接</span></span><br><span class="line">        con.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>execute() 返回结果为boolean   executeUpdate() 返回结果是int  executeQuery()返回结果是结果集</p>
+<ul>
+<li>executeQuery() 常用于查询</li>
+<li>executeUpdate() 常用于增删改</li>
+<li>execute() 用在有多个结果集等情况下</li>
+</ul>
+</li>
+<li><p>url解释</p>
+<ul>
+<li>useUnicode=true 使用编码为unicode</li>
+<li>characterEncoding=UTF-8 使用字符编码集为 utf-8</li>
+<li>zeroDateTimeBehavior=convertToNull   日期异常处理方式<ul>
+<li>l exception：默认值，即抛出SQL state [S1009]. Cannot convert value….的异常；</li>
+<li>l convertToNull：将日期转换成NULL值；</li>
+<li>l round：替换成最近的日期即0001-01-01；</li>
+</ul>
+</li>
+<li>useSSL=true  解决mysql和jdbc版本不兼容问题</li>
+</ul>
+</li>
+<li><p>还存在预编译的执行方式</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Connection con;</span><br><span class="line">    PreparedStatement pstm;</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    <span class="comment">//根据导入的包中的Driver路径来写</span></span><br><span class="line">    String driver = <span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line">    String url=<span class="string">&quot;jdbc:mysql://localhost:3306/cloud_data?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&quot;</span>;</span><br><span class="line">    String username=<span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password=<span class="string">&quot;123456&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//这里会出现异常找不到类 ClassNotFoundException，也即找不到驱动</span></span><br><span class="line">        Class.forName(driver);</span><br><span class="line">        <span class="comment">//获取连接以及获取statement以及后面的执行sql语句都会出现 SQLException 异常</span></span><br><span class="line">        con = DriverManager.getConnection(url,username,password);</span><br><span class="line">        <span class="comment">//创建执行对象</span></span><br><span class="line">        pstm = con.prepareStatement(<span class="string">&quot;update dept set deptname = ? where deptno = ?&quot;</span>);</span><br><span class="line">        <span class="comment">//将数据放入pstm对象中</span></span><br><span class="line">        pstm.setString(<span class="number">1</span>,<span class="string">&quot;物流部门&quot;</span>);</span><br><span class="line">        pstm.setInt(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//执行sql语句获取结果</span></span><br><span class="line">        result = pstm.executeUpdate();</span><br><span class="line">        System.out.println(<span class="string">&quot;更新了 &quot;</span>+result+<span class="string">&quot; 条数据&quot;</span>);</span><br><span class="line">        <span class="comment">//关闭执行对象</span></span><br><span class="line">        pstm.close();</span><br><span class="line">        <span class="comment">//关闭连接</span></span><br><span class="line">        con.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：此种方式更加灵活，不管执行多少个此类sql，都只会解析和编译一次，而使用statement则是对每个执行的sql都解析和编译，PreparedStatement 也比 statement 方式更加安全</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Wp</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://simplemw.github.io/2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/">https://simplemw.github.io/2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mysql/">Mysql</a></div><div class="post_share"><div class="social-share" data-image="/images/moren.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/14/mysql-mysql8%E9%85%8D%E7%BD%AE/"><img class="prev-cover" src="/images/moren.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">mysql8 免安装配置</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/04/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"><img class="next-cover" src="/images/moren.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">消息队列理解</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Wp</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">53</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/03/springboot-sentinel/" title="整合sentinel"><img src="https://images.wallpaperscraft.com/image/red_white_black_figure_211_1280x1024.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整合sentinel"/></a><div class="content"><a class="title" href="/2021/08/03/springboot-sentinel/" title="整合sentinel">整合sentinel</a><time datetime="2021-08-03T10:12:13.000Z" title="Created 2021-08-03 18:12:13">2021-08-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/06/springBoot-flowable/" title="整合flowable-model"><img src="http://up.36992.com/pic/e6/c5/51/e6c551e768092c8655292d89a4034a74.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整合flowable-model"/></a><div class="content"><a class="title" href="/2021/07/06/springBoot-flowable/" title="整合flowable-model">整合flowable-model</a><time datetime="2021-07-06T10:12:13.000Z" title="Created 2021-07-06 18:12:13">2021-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/11/springBoot-feign/" title="feign配置"><img src="https://images.wallpaperscraft.com/image/surface_paint_white_light_50838_1280x1024.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="feign配置"/></a><div class="content"><a class="title" href="/2021/05/11/springBoot-feign/" title="feign配置">feign配置</a><time datetime="2021-05-11T03:12:13.000Z" title="Created 2021-05-11 11:12:13">2021-05-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Wp</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'd9W5265EmXDB5ijXPtnRCOEA-gzGzoHsz',
+      appKey: 'Wstd6m2mYmEXyYzL5iEourhV',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="255,0,0" opacity="0.3" zIndex="-2" count="120" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
