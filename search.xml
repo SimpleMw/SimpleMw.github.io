@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>mysql小点杂</title>
+      <link href="2021/09/09/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/"/>
+      <url>2021/09/09/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/</url>
+      
+        <content type="html"><![CDATA[<h4 id="时间差"><a href="#时间差" class="headerlink" title="时间差"></a>时间差</h4><ul><li>类型 </li></ul><table><thead><tr><th>秒数</th><th>分钟数</th><th>小时数</th><th>天数</th><th>周数</th><th>季度数</th><th>月数</th><th>年数</th></tr></thead><tbody><tr><td>SECOND</td><td>MINUTE</td><td>HOUR</td><td>DAY</td><td>WEEK</td><td>QUARTER</td><td>MONTH</td><td>YEAR</td></tr></tbody></table><ul><li>举例 </li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT TIMESTAMPDIFF(SECOND,‘1993-03-23 00:00:00’,DATE_FORMAT(NOW(), &#39;%Y-%m-%d %H:%i:%S&#39;))</span><br></pre></td></tr></table></figure><h4 id="行拆分"><a href="#行拆分" class="headerlink" title="行拆分"></a>行拆分</h4><ul><li>对于逗号隔开的数据拆分成行</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    substring_index(substring_index( a.note,<span class="string">&#x27;,&#x27;</span>,b.help_topic_id <span class="operator">+</span> <span class="number">1</span>),<span class="string">&#x27;,&#x27;</span> ,<span class="operator">-</span> <span class="number">1</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    (<span class="keyword">select</span> <span class="string">&#x27;1,2,3,4&#x27;</span> <span class="keyword">as</span> note) a  </span><br><span class="line"><span class="keyword">JOIN</span> mysql.help_topic b <span class="keyword">ON</span> b.help_topic_id <span class="operator">&lt;</span></span><br><span class="line">(length(a.note) <span class="operator">-</span> length( replace(a.note,<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27;&#x27;</span>)) <span class="operator">+</span> <span class="number">1</span>)</span><br></pre></td></tr></table></figure><h4 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h4><p><font color='red'>获取某个表的某个字段信息</font></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> INFORMATION_SCHEMA.COLUMNS <span class="keyword">where</span> TABLE_NAME<span class="operator">=</span><span class="string">&#x27;表名&#x27;</span> <span class="keyword">and</span> COLUMN_NAME<span class="operator">=</span><span class="string">&#x27;列名&#x27;</span></span><br></pre></td></tr></table></figure><p><font color=red>参数连接</font></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> CONCAT(A, B, C) <span class="keyword">from</span> <span class="keyword">table</span> </span><br></pre></td></tr></table></figure><p>参数连接用concat函数</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mysql相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>整合sentinel</title>
       <link href="2021/08/03/springboot-sentinel/"/>
       <url>2021/08/03/springboot-sentinel/</url>
@@ -996,31 +1021,6 @@
         <tags>
             
             <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>mysql小点杂</title>
-      <link href="2020/10/01/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/"/>
-      <url>2020/10/01/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/</url>
-      
-        <content type="html"><![CDATA[<p><font color=red>获取某个表的某个字段信息</font></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> INFORMATION_SCHEMA.COLUMNS <span class="keyword">where</span> TABLE_NAME<span class="operator">=</span><span class="string">&#x27;biaoming&#x27;</span> <span class="keyword">and</span> COLUMN_NAME<span class="operator">=</span><span class="string">&#x27;lieming&#x27;</span></span><br></pre></td></tr></table></figure><p><font color=red>参数连接</font></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> CONCAT(A, B, C) <span class="keyword">from</span> <span class="keyword">table</span> </span><br></pre></td></tr></table></figure><p>参数连接用concat函数</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Mysql相关 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Mysql </tag>
             
         </tags>
       
