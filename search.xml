@@ -13,6 +13,8 @@
       
       <categories>
           
+          <category> 数据库 </category>
+          
           <category> Mysql相关 </category>
           
       </categories>
@@ -38,14 +40,20 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> Spring Cloud Alibaba </category>
+          
+          <category> Sentinel </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> sentinel </tag>
+            <tag> Spring </tag>
+            
+            <tag> Sentinel </tag>
             
         </tags>
       
@@ -63,14 +71,20 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Flowable </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> flowable </tag>
+            <tag> SpringBoot </tag>
+            
+            <tag> Flowable </tag>
             
         </tags>
       
@@ -79,7 +93,7 @@
     
     
     <entry>
-      <title>feign配置</title>
+      <title>Feign配置</title>
       <link href="2021/05/11/springBoot-feign/"/>
       <url>2021/05/11/springBoot-feign/</url>
       
@@ -88,14 +102,51 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> Spring Cloud Alibaba </category>
+          
+          <category> Feign </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> feign </tag>
+            <tag> Spring </tag>
+            
+            <tag> Feign </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hystrix配置</title>
+      <link href="2021/05/11/springBoot-hystrix/"/>
+      <url>2021/05/11/springBoot-hystrix/</url>
+      
+        <content type="html"><![CDATA[<p> hystrix 熔断机制，用于服务间互相调用的熔断，结合feign使用</p><p>配置方式</p><ul><li>依赖</li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>yml配置</li></ul><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启熔断机制，默认false</span></span><br><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">hystrix:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure><ul><li>熔断类</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HystrixReturn</span> <span class="keyword">implements</span> <span class="title">MyFeign</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">provide</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我熔断了&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我熔断了&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>继承与feign的接口，即会对每一个feign做一个降级熔断返回信息配置</p><ul><li>feign类</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里的注解写服务提供者的服务名</span></span><br><span class="line"><span class="meta">@FeignClient(value = &quot;feign-provider&quot;,fallback = HystrixReturn.class)</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyFeign</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里是写服务的请求接口</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/provide/ces&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">provide</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注解中添加降级的熔断返回信息配置类</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring </category>
+          
+          <category> Spring Cloud </category>
+          
+          <category> Hystrix </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring </tag>
+            
+            <tag> Hystrix </tag>
             
         </tags>
       
@@ -113,12 +164,16 @@
       
       <categories>
           
-          <category> redis </category>
+          <category> 三方服务 </category>
+          
+          <category> Redis </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Redis </tag>
             
             <tag> 分布式锁 </tag>
             
@@ -138,14 +193,16 @@
       
       <categories>
           
-          <category> redis </category>
+          <category> 三方服务 </category>
+          
+          <category> Redis </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> redis </tag>
+            <tag> Redis </tag>
             
         </tags>
       
@@ -163,12 +220,16 @@
       
       <categories>
           
-          <category> zookeeper </category>
+          <category> 三方服务 </category>
+          
+          <category> Zookeeper </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Zookeeper </tag>
             
             <tag> 分布式锁 </tag>
             
@@ -238,14 +299,18 @@
       
       <categories>
           
-          <category> tools </category>
+          <category> 服务部署 </category>
+          
+          <category> windows开机启动jar </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tools </tag>
+            <tag> 服务部署 </tag>
+            
+            <tag> windows开机启动jar </tag>
             
         </tags>
       
@@ -263,12 +328,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Websocket </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> SpringBoot </tag>
             
             <tag> Websocket </tag>
             
@@ -288,14 +359,20 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Maven </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> SpringBoot </tag>
+            
+            <tag> Maven </tag>
             
         </tags>
       
@@ -313,12 +390,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> Spring Cloud Alibaba </category>
+          
+          <category> Nacos </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Spring </tag>
             
             <tag> Nacos </tag>
             
@@ -354,7 +437,7 @@
     
     
     <entry>
-      <title>添加Valine评论</title>
+      <title>Chis主题添加Valine评论</title>
       <link href="2020/12/16/hexo%E6%B7%BB%E5%8A%A0Valine%E8%AF%84%E8%AE%BA/"/>
       <url>2020/12/16/hexo%E6%B7%BB%E5%8A%A0Valine%E8%AF%84%E8%AE%BA/</url>
       
@@ -413,14 +496,18 @@
       
       <categories>
           
-          <category> docker </category>
+          <category> 服务部署 </category>
+          
+          <category> Docker </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> docker </tag>
+            <tag> 服务部署 </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
       
@@ -463,12 +550,16 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Mybatis </category>
+          
+          <category> Mybatis </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Spring </tag>
             
             <tag> Mybatis </tag>
             
@@ -513,12 +604,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Datasource </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> SpringBoot </tag>
             
             <tag> Datasource </tag>
             
@@ -538,14 +635,20 @@
       
       <categories>
           
-          <category> spring相关 </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot基础 </category>
+          
+          <category> GET和POST </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> Spring </tag>
+            
+            <tag> SpringBoot </tag>
             
         </tags>
       
@@ -563,14 +666,20 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> Spring Cloud Alibaba </category>
+          
+          <category> Gateway </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> gateway </tag>
+            <tag> Spring </tag>
+            
+            <tag> Gateway </tag>
             
         </tags>
       
@@ -638,12 +747,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> Spring Cloud </category>
+          
+          <category> Eureka </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Spring </tag>
             
             <tag> Eureka </tag>
             
@@ -663,12 +778,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Swagger </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> SpringBoot </tag>
             
             <tag> Swagger </tag>
             
@@ -688,12 +809,18 @@
       
       <categories>
           
-          <category> springBoot </category>
+          <category> Mybatis </category>
+          
+          <category> Mybatisplus </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Spring </tag>
+            
+            <tag> Mybatis </tag>
             
             <tag> Mybatisplus </tag>
             
@@ -738,14 +865,20 @@
       
       <categories>
           
-          <category> spring相关 </category>
+          <category> Spring </category>
+          
+          <category> SpringBoot基础 </category>
+          
+          <category> IOC和AOP </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> Spring </tag>
+            
+            <tag> SpringBoot </tag>
             
         </tags>
       
@@ -763,6 +896,8 @@
       
       <categories>
           
+          <category> 数据库 </category>
+          
           <category> Mysql相关 </category>
           
       </categories>
@@ -779,7 +914,7 @@
     
     
     <entry>
-      <title>数据库mysql连接</title>
+      <title>mysql数据库连接</title>
       <link href="2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/"/>
       <url>2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/</url>
       
@@ -787,6 +922,8 @@
       
       
       <categories>
+          
+          <category> 数据库 </category>
           
           <category> Mysql相关 </category>
           
@@ -796,6 +933,8 @@
         <tags>
             
             <tag> Mysql </tag>
+            
+            <tag> java基础 </tag>
             
         </tags>
       
@@ -1063,6 +1202,8 @@
       
       <categories>
           
+          <category> 数据库 </category>
+          
           <category> Oracle相关 </category>
           
       </categories>
@@ -1087,6 +1228,8 @@
       
       
       <categories>
+          
+          <category> 数据库 </category>
           
           <category> Oracle相关 </category>
           
@@ -1204,7 +1347,7 @@
     
     
     <entry>
-      <title>Chic点线背景特效添加</title>
+      <title>Chic主题电线背景特效添加</title>
       <link href="2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/"/>
       <url>2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/</url>
       
@@ -1229,7 +1372,7 @@
     
     
     <entry>
-      <title>Chic爆炸特效添加</title>
+      <title>Chic主题爆炸特效添加</title>
       <link href="2019/10/04/hexo-Chic%E7%88%86%E7%82%B8%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/"/>
       <url>2019/10/04/hexo-Chic%E7%88%86%E7%82%B8%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/</url>
       
@@ -1263,10 +1406,16 @@
       
       <categories>
           
-          <category> 杂项 </category>
+          <category> hexo相关 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1307,10 +1456,16 @@
       
       <categories>
           
-          <category> 杂项 </category>
+          <category> hexo相关 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
       
     </entry>
     
