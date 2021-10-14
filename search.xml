@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>serqserver小点杂</title>
+      <link href="2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/"/>
+      <url>2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/</url>
+      
+        <content type="html"><![CDATA[<h5 id="时间相加"><a href="#时间相加" class="headerlink" title="时间相加"></a>时间相加</h5><ul><li>语法</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DATEADD(type,number,<span class="type">date</span>)</span><br></pre></td></tr></table></figure><ul><li>常用类型</li></ul><table><thead><tr><th>年</th><th>季度</th><th>月</th><th>周</th><th>日</th><th>时</th><th>分</th><th>秒</th><th>毫秒</th></tr></thead><tbody><tr><td>yy或yyyy</td><td>qq或q</td><td>mm或m</td><td>wk或ww</td><td>dd或d</td><td>hh</td><td>mi或n</td><td>ss或s</td><td>ms</td></tr></tbody></table><ul><li>举例</li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> DATEADD(ss,<span class="number">1</span>,<span class="string">&#x27;2021-02-27 15:05:33.0&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+          <category> Serqserver相关 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Serqserver </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mysql小点杂</title>
       <link href="2021/09/30/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/"/>
       <url>2021/09/30/mysql-mysql%E5%B0%8F%E7%82%B9%E6%9D%82/</url>
@@ -242,31 +269,6 @@
     
     
     <entry>
-      <title>nfs共享存储</title>
-      <link href="2021/04/22/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3-nfs%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8/"/>
-      <url>2021/04/22/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3-nfs%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8/</url>
-      
-        <content type="html"><![CDATA[<h5 id="服务机"><a href="#服务机" class="headerlink" title="服务机"></a>服务机</h5><p>ip： 192.168.128.128</p><ul><li>下载nfs软件包</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils rpcbind</span><br></pre></td></tr></table></figure><ul><li>设置目录 vim /etc/exports</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#rw 允许读写 ro 只读</span><br><span class="line">#sync 同时将数据写入内存和硬盘  async 先写入内存再写入硬盘</span><br><span class="line">#root_squash 当NFS客户端以root管理员访问时，映射为NFS服务器的匿名用户(不常用)</span><br><span class="line">#no_root_squash 当NFS客户端以root管理员访问时，映射为NFS服务器的root管理员(不常用)</span><br><span class="line">#all_squash 无论NFS客户端使用什么账户访问，均映射为NFS服务器的匿名用户(常用)</span><br><span class="line">#no_all_squash 无论NFS客户端使用什么账户访问，先与本机匹配，匹配不到则为匿名用户</span><br><span class="line">&#x2F;tmp&#x2F;share  192.168.128.129&#x2F;24(rw,async,no_root_squash)</span><br></pre></td></tr></table></figure><ul><li>创建服务机地文件夹，并设置读写权限</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir share</span><br><span class="line">chmod 777 /share</span><br></pre></td></tr></table></figure><ul><li>关闭防火墙</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><ul><li>可查看本机的nfs地址</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exportfs -rv</span><br></pre></td></tr></table></figure><ul><li>启动nfs服务</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rpcbind ; systemctl start nfs</span><br></pre></td></tr></table></figure><ul><li>确认挂载</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -Th</span><br></pre></td></tr></table></figure><h5 id="客户机"><a href="#客户机" class="headerlink" title="客户机"></a>客户机</h5><p>ip： 192.168.128.129</p><ul><li>下载nfs软件包</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils rpcbind</span><br></pre></td></tr></table></figure><ul><li>创建要共享的文件夹，并设置读写权限</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/share</span><br><span class="line">chmod 777 /tmp/share</span><br></pre></td></tr></table></figure><ul><li>关闭防火墙</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><ul><li>启动服务</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service rpcbind start</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术了解 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> nfs </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>zookeeper分布式锁使用</title>
       <link href="2021/04/22/web-zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
       <url>2021/04/22/web-zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</url>
@@ -288,6 +290,31 @@
             <tag> 分布式锁 </tag>
             
             <tag> Zookeeper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nfs共享存储</title>
+      <link href="2021/04/22/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3-nfs%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8/"/>
+      <url>2021/04/22/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3-nfs%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8/</url>
+      
+        <content type="html"><![CDATA[<h5 id="服务机"><a href="#服务机" class="headerlink" title="服务机"></a>服务机</h5><p>ip： 192.168.128.128</p><ul><li>下载nfs软件包</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils rpcbind</span><br></pre></td></tr></table></figure><ul><li>设置目录 vim /etc/exports</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#rw 允许读写 ro 只读</span><br><span class="line">#sync 同时将数据写入内存和硬盘  async 先写入内存再写入硬盘</span><br><span class="line">#root_squash 当NFS客户端以root管理员访问时，映射为NFS服务器的匿名用户(不常用)</span><br><span class="line">#no_root_squash 当NFS客户端以root管理员访问时，映射为NFS服务器的root管理员(不常用)</span><br><span class="line">#all_squash 无论NFS客户端使用什么账户访问，均映射为NFS服务器的匿名用户(常用)</span><br><span class="line">#no_all_squash 无论NFS客户端使用什么账户访问，先与本机匹配，匹配不到则为匿名用户</span><br><span class="line">&#x2F;tmp&#x2F;share  192.168.128.129&#x2F;24(rw,async,no_root_squash)</span><br></pre></td></tr></table></figure><ul><li>创建服务机地文件夹，并设置读写权限</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir share</span><br><span class="line">chmod 777 /share</span><br></pre></td></tr></table></figure><ul><li>关闭防火墙</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><ul><li>可查看本机的nfs地址</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exportfs -rv</span><br></pre></td></tr></table></figure><ul><li>启动nfs服务</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rpcbind ; systemctl start nfs</span><br></pre></td></tr></table></figure><ul><li>确认挂载</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -Th</span><br></pre></td></tr></table></figure><h5 id="客户机"><a href="#客户机" class="headerlink" title="客户机"></a>客户机</h5><p>ip： 192.168.128.129</p><ul><li>下载nfs软件包</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils rpcbind</span><br></pre></td></tr></table></figure><ul><li>创建要共享的文件夹，并设置读写权限</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/share</span><br><span class="line">chmod 777 /tmp/share</span><br></pre></td></tr></table></figure><ul><li>关闭防火墙</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><ul><li>启动服务</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service rpcbind start</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术了解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nfs </tag>
             
         </tags>
       
@@ -447,7 +474,7 @@
       <link href="2020/12/18/java%E5%9F%BA%E7%A1%80-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/"/>
       <url>2020/12/18/java%E5%9F%BA%E7%A1%80-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</url>
       
-        <content type="html"><![CDATA[<h5 id="map转json"><a href="#map转json" class="headerlink" title="map转json"></a>map转json</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSONObject json = <span class="keyword">new</span> JSONObject(map);</span><br></pre></td></tr></table></figure><h5 id="json转map"><a href="#json转map" class="headerlink" title="json转map"></a>json转map</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap map1 = JSONObject.parseObject(jsonstr, HashMap.class);</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h5 id="map转json"><a href="#map转json" class="headerlink" title="map转json"></a>map转json</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSONObject json = <span class="keyword">new</span> JSONObject(map);</span><br></pre></td></tr></table></figure><h5 id="json转map"><a href="#json转map" class="headerlink" title="json转map"></a>json转map</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap map1 = JSONObject.parseObject(jsonstr, HashMap.class);</span><br></pre></td></tr></table></figure><h5 id="时间格式转换"><a href="#时间格式转换" class="headerlink" title="时间格式转换"></a>时间格式转换</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>).parse(downloadAcousticTxtVm.getTestTime());</span><br><span class="line">downloadAcousticTxtVm.setTestTime(<span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy/MM/dd HH:mm:ss&quot;</span>).format(date));</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
