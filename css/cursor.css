@@ -1,0 +1,9 @@
+body {
+    cursor: url("../img/pointer.cur"),
+        default;
+}
+a,
+img {
+    cursor: url("../img/pointer.cur"),
+        default;
+}
