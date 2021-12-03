@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>bpmn文件解释</title>
+      <link href="2021/12/03/bpmn/"/>
+      <url>2021/12/03/bpmn/</url>
+      
+        <content type="html"><![CDATA[<h4 id="根节点"><a href="#根节点" class="headerlink" title="根节点"></a>根节点</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bpmn2:definitions</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="attr">xmlns:bpmn2</span>=<span class="string">&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot;</span> <span class="attr">xmlns:bpmndi</span>=<span class="string">&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot;</span> <span class="attr">xmlns:dc</span>=<span class="string">&quot;http://www.omg.org/spec/DD/20100524/DC&quot;</span> <span class="attr">xmlns:di</span>=<span class="string">&quot;http://www.omg.org/spec/DD/20100524/DI&quot;</span> <span class="attr">id</span>=<span class="string">&quot;sample-diagram&quot;</span> <span class="attr">targetNamespace</span>=<span class="string">&quot;http://bpmn.io/schema/bpmn&quot;</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:definitions</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="中间两个节点"><a href="#中间两个节点" class="headerlink" title="中间两个节点"></a>中间两个节点</h4><h5 id="process"><a href="#process" class="headerlink" title="process"></a>process</h5><p>(表示节点和连线的信息)</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bpmn2:process</span> <span class="attr">id</span>=<span class="string">&quot;Process_1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:process</span>&gt;</span></span><br></pre></td></tr></table></figure><h6 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开始节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:startEvent</span> <span class="attr">id</span>=<span class="string">&quot;StartEvent_1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;开始&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_11wp6xg<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:startEvent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 结束节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:endEvent</span> <span class="attr">id</span>=<span class="string">&quot;EndEvent_03foojn&quot;</span> <span class="attr">name</span>=<span class="string">&quot;结束&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_1uoo14p<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_152djel<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:endEvent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 网关节点记录连进来的线的信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:exclusiveGateway</span> <span class="attr">id</span>=<span class="string">&quot;ExclusiveGateway_18wv5dj&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_14ico3u<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_1ymg9x5<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_1qyxaz6<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:exclusiveGateway</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 一进一出节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:task</span> <span class="attr">id</span>=<span class="string">&quot;Task_023809g&quot;</span> <span class="attr">name</span>=<span class="string">&quot;计划1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_11wp6xg<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_14ico3u<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:task</span> <span class="attr">id</span>=<span class="string">&quot;Task_0sk0zxt&quot;</span> <span class="attr">name</span>=<span class="string">&quot;正确执行&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_1ymg9x5<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_1uoo14p<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:task</span> <span class="attr">id</span>=<span class="string">&quot;Task_1baahwq&quot;</span> <span class="attr">name</span>=<span class="string">&quot;失败执行&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:incoming</span>&gt;</span>SequenceFlow_1qyxaz6<span class="tag">&lt;/<span class="name">bpmn2:incoming</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bpmn2:outgoing</span>&gt;</span>SequenceFlow_152djel<span class="tag">&lt;/<span class="name">bpmn2:outgoing</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmn2:task</span>&gt;</span></span><br></pre></td></tr></table></figure><p>注：</p><ul><li>对于节点，incoming表示连进来的连线，outgoing表示连出去的连线</li><li>对于连线，sourceRef表示指向开始节点，targetRef表示指向目的节点</li></ul><h6 id="连线"><a href="#连线" class="headerlink" title="连线"></a>连线</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 连线 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_11wp6xg&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;StartEvent_1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;Task_023809g&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_14ico3u&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;Task_023809g&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;ExclusiveGateway_18wv5dj&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_1uoo14p&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;Task_0sk0zxt&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;EndEvent_03foojn&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_152djel&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;Task_1baahwq&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;EndEvent_03foojn&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_1ymg9x5&quot;</span> <span class="attr">name</span>=<span class="string">&quot;true&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;ExclusiveGateway_18wv5dj&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;Task_0sk0zxt&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bpmn2:sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;SequenceFlow_1qyxaz6&quot;</span> <span class="attr">name</span>=<span class="string">&quot;false&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;ExclusiveGateway_18wv5dj&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;Task_1baahwq&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure><h5 id="diagram"><a href="#diagram" class="headerlink" title="diagram"></a>diagram</h5><p>(表示连线和节点的尺寸位置信息）</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bpmndi:BPMNDiagram</span> <span class="attr">id</span>=<span class="string">&quot;BPMNDiagram_1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bpmndi:BPMNDiagram</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring </category>
+          
+          <category> SpringBoot整合 </category>
+          
+          <category> Flowable </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> Flowable </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mqtt</title>
       <link href="2021/11/17/MQTT/"/>
       <url>2021/11/17/MQTT/</url>
@@ -78,9 +109,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
@@ -107,9 +138,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
@@ -190,9 +221,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
@@ -814,9 +845,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
@@ -1042,9 +1073,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
         </tags>
       
