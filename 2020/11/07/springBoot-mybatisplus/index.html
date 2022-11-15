@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
+  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wp">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="此为mybatisplus的使用方式  mybatis 点击 进入 QueryWrapper构造器方式QueryWrapper构造器是来构建where条件的，所以只有删改查才会用到 步骤1 mapper类继承 BaseMapper&lt;&gt;类  123@Mapperpublic interface PojoMapper extends BaseMapper&lt;Pojo&gt; &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybaisplus相关">
+<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2020/11/07/springBoot-mybatisplus/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="此为mybatisplus的使用方式  mybatis 点击 进入 QueryWrapper构造器方式QueryWrapper构造器是来构建where条件的，所以只有删改查才会用到 步骤1 mapper类继承 BaseMapper&lt;&gt;类  123@Mapperpublic interface PojoMapper extends BaseMapper&lt;Pojo&gt; &amp;#123">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-07T02:20:27.000Z">
+<meta property="article:modified_time" content="2021-11-15T01:30:53.146Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Mybatis">
+<meta property="article:tag" content="Mybatisplus">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Mybaisplus相关 - SimpleMw&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
+  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+      <strong>SimpleMw&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Mybaisplus相关</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-07 10:20" pubdate>
+          2020年11月7日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mybaisplus相关</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>此为mybatisplus的使用方式  mybatis <a target="_blank" rel="noopener" href="http://simplemw.gitee.io/blog/2020/11/26/spring-mybatis.html">点击</a> 进入</p>
+<h3 id="QueryWrapper构造器方式"><a href="#QueryWrapper构造器方式" class="headerlink" title="QueryWrapper构造器方式"></a>QueryWrapper构造器方式</h3><p>QueryWrapper构造器是来构建where条件的，所以只有删改查才会用到</p>
+<h4 id="步骤1"><a href="#步骤1" class="headerlink" title="步骤1"></a>步骤1</h4><ul>
+<li>mapper类继承 BaseMapper&lt;&gt;类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">PojoMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;Pojo&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="步骤2"><a href="#步骤2" class="headerlink" title="步骤2"></a>步骤2</h4><ul>
+<li>serviceimple类调用方法</li>
+</ul>
+<h5 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//创建queryWrapper对象</span><br>QueryWrapper&lt;Pojo&gt; queryWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;&gt;();<br><span class="hljs-comment">//传入有值类条件</span><br>queryWrapper.eq(<span class="hljs-string">&quot;表字段名&quot;</span>,<span class="hljs-string">&quot;值&quot;</span>);<br><span class="hljs-comment">//传入无值类条件 表字段名 is not null</span><br>queryWrapper.isNotNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//传入无值类条件 表字段名 is null</span><br>queryWrapper.isNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//查询</span><br>PojoMapper.selectList(queryWrapper);<br></code></pre></td></tr></table></figure>
+
+<p>如果是in的查询条件的话，就将eq改为in</p>
+<h5 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//创建queryWrapper对象</span><br>QueryWrapper&lt;Pojo&gt; queryWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;&gt;();<br><span class="hljs-comment">//传入有值类条件</span><br>queryWrapper.eq(<span class="hljs-string">&quot;表字段名&quot;</span>,<span class="hljs-string">&quot;值&quot;</span>);<br><span class="hljs-comment">//传入无值类条件 表字段名 is not null</span><br>queryWrapper.isNotNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//传入无值类条件 表字段名 is null</span><br>queryWrapper.isNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//查询</span><br>PojoMapper.update(pojo对象,queryWrapper);<br></code></pre></td></tr></table></figure>
+
+<p>queryWrapper中的值为where后的条件，实际的修改是将pojo中的数据替换满足条件的数据</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//创建queryWrapper对象</span><br>QueryWrapper&lt;Pojo&gt; queryWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;&gt;();<br><span class="hljs-comment">//传入有值类条件</span><br>queryWrapper.eq(<span class="hljs-string">&quot;表字段名&quot;</span>,<span class="hljs-string">&quot;值&quot;</span>);<br><span class="hljs-comment">//传入无值类条件 表字段名 is not null</span><br>queryWrapper.isNotNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//传入无值类条件 表字段名 is null</span><br>queryWrapper.isNull(<span class="hljs-string">&quot;表字段名&quot;</span>)<br><span class="hljs-comment">//查询</span><br>PojoMapper.delete(queryWrapper);<br></code></pre></td></tr></table></figure>
+
+<h5 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">PojoMapper.insert(pojo对象);<br></code></pre></td></tr></table></figure>
+
+<p>注：增加不需要创建queryWrapper来构建条件</p>
+<h5 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h5><p>mybatisplus 使用pagehelper分页</p>
+<ul>
+<li>mybatisplus自带了pagehelper不用注入依赖</li>
+<li>添加配置类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MybatisPlus</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> PaginationInterceptor <span class="hljs-title function_">paginationInterceptor</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">PaginationInterceptor</span> <span class="hljs-variable">paginationInterceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PaginationInterceptor</span>();<br>        <span class="hljs-keyword">return</span> paginationInterceptor;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>application或者bootstrap配置</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">pagehelper:</span><br>  <span class="hljs-comment">#默认为false,合理化查询，页码&lt;=0的时候查询第一页，超过最大页查询最后一页</span><br>  <span class="hljs-attr">reasonable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment">#默认为false,设置为true当设置pageSize为0的时候查全部</span><br>  <span class="hljs-attr">pageSizeZero:</span> <span class="hljs-literal">true</span> <span class="hljs-comment">#pageSize=0</span><br>  <span class="hljs-comment">#默认为false,判断Dao要执行的方法参数列表是否有pageNum和pageSize参数，有会自动进行分页</span><br>  <span class="hljs-attr">supportMethodsArguments:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment">#默认为false,多数据源时自动识别分页方言</span><br>  <span class="hljs-attr">autoRuntimeDialect:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>mapper配置(plus中需要mapper去继承BaseMapper)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">PrintTemplateMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;PrintTemplate&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>service中写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">QueryWrapper&lt;PrintTemplate&gt; queryWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;&gt;();<br><span class="hljs-comment">//填入分页信息</span><br>Page&lt;PrintTemplate&gt; page = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>&lt;&gt;(pageIndex, pageSize);<br><span class="hljs-comment">//填入条件</span><br>queryWrapper.eq(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;123&quot;</span>);<br><span class="hljs-comment">//分页查询</span><br>printTemplateMapper.selectPage(page, queryWrapper);<br></code></pre></td></tr></table></figure>
+
+<h3 id="xml配置SQL方式"><a href="#xml配置SQL方式" class="headerlink" title="xml配置SQL方式"></a>xml配置SQL方式</h3><p>此种方式很灵活，要做什么crud直接写sql进去就行，多表连表查询一般用此种方式</p>
+<h4 id="步骤1-1"><a href="#步骤1-1" class="headerlink" title="步骤1"></a>步骤1</h4><ul>
+<li>写mapper接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">PojoMapper</span>&#123;<br>    List&lt;Pojo&gt; <span class="hljs-title function_">selectAll</span><span class="hljs-params">(String linename)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="步骤2-1"><a href="#步骤2-1" class="headerlink" title="步骤2"></a>步骤2</h4><ul>
+<li>实现mapper.xml接口，我放的路径为 resources&#x2F;Mybatis&#x2F;PojoMapper.xml</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 这里绑定mapper接口 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.simplemw.mapper.PojoMapper&quot;</span>&gt;</span><br>    <br>    <span class="hljs-comment">&lt;!-- 中间实现接口中的方法 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectAll&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.simplemw.mapper.pojo.Pojo&quot;</span>&gt;</span><br>    	select * from tablename where linename=#&#123;linename&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>添加application.yml配置</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mybatis-plus:</span> <br>    <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:Mybatis/**/*Mapper.xml</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="自动填入值"><a href="#自动填入值" class="headerlink" title="自动填入值"></a>自动填入值</h3><p>场景：</p>
+<ul>
+<li>数据新增时，需要自动产生ID、需要自动导入产生时间</li>
+<li>数据修改时，需要自动导入编辑时间</li>
+</ul>
+<p>使用mybatisplus的TableField类</p>
+<h4 id="填入UUID"><a href="#填入UUID" class="headerlink" title="填入UUID"></a>填入UUID</h4><p>pojo属性字段添加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TableId(type = IdType.ASSIGN_ID)</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="填入其它值"><a href="#填入其它值" class="headerlink" title="填入其它值"></a>填入其它值</h4><p>这里以自动导入时间为例，解决办法使用 MetaObjectHandler</p>
+<ul>
+<li>实现 MetaObjectHandler 接口，并实现 insertFill、updateFill方法(其两种方法主要是定义 在插入操作或者更新操作的时候哪些值可以自动导入，以及导入什么值)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MybatisObjectHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MetaObjectHandler</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertFill</span><span class="hljs-params">(MetaObject metaObject)</span> &#123;<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;createdDt&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>).format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()),metaObject);<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;deletedDt&quot;</span>,<span class="hljs-literal">null</span>,metaObject);<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;lastEditedDt&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>).format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()),metaObject);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updateFill</span><span class="hljs-params">(MetaObject metaObject)</span> &#123;<br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;lastEditedDt&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>).format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()),metaObject);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注：需要@Component 扫描</p>
+<ul>
+<li><p>pojo属性字段添加注解</p>
+<p>DEFAULT 默认不处理</p>
+<p>INSERT 插入填充字段</p>
+<p>UPDATE 更新填充字段</p>
+<p>INSERT_UPDATE 插入和更新填充字段</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TableField(fill = FieldFill.INSERT)</span><br></code></pre></td></tr></table></figure>
+
+<p>注解功能解释：即当为插入数据库时，自动填充值进下面的属性</p>
+<h3 id="持续更新中"><a href="#持续更新中" class="headerlink" title="持续更新中"></a>持续更新中</h3>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/sites/simplemw/deploys/categories/Mybatis/" class="category-chain-item">Mybatis</a>
+  
+  
+    <span>></span>
+    
+  <a href="/sites/simplemw/deploys/categories/Mybatis/Mybatisplus/" class="category-chain-item">Mybatisplus</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/sites/simplemw/deploys/tags/Spring/">#Spring</a>
+      
+        <a href="/sites/simplemw/deploys/tags/Mybatis/">#Mybatis</a>
+      
+        <a href="/sites/simplemw/deploys/tags/Mybatisplus/">#Mybatisplus</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mybaisplus相关</div>
+      <div>https://app.netlify.com/sites/simplemw/deploys/2020/11/07/springBoot-mybatisplus/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Wp</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年11月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2020/11/08/springBoot-swagger/" title="swagger配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">swagger配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2020/10/28/java%E5%9F%BA%E7%A1%80-jwt/" title="jwt理解">
+                        <span class="hidden-mobile">jwt理解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/sites/simplemw/deploys/js/events.js" ></script>
+<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

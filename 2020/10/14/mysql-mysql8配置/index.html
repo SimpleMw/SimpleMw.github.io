@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
+  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wp">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="解压压缩包  配置环境变量 path中加入mysql的bin路径  myql8解压根路径下新建 my.ini文件,写入以下(my.ini为配置文件)，其中mysql的安装路径以及数据库的数据存放路径要修改相应的位置，若以前解压目录下存在data文件夹，可以删除 12345678910111213141516171819202122232425[mysql]# 设置mysql客户端默认字符集def">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql8 免安装配置">
+<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2020/10/14/mysql-mysql8%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="解压压缩包  配置环境变量 path中加入mysql的bin路径  myql8解压根路径下新建 my.ini文件,写入以下(my.ini为配置文件)，其中mysql的安装路径以及数据库的数据存放路径要修改相应的位置，若以前解压目录下存在data文件夹，可以删除 12345678910111213141516171819202122232425[mysql]# 设置mysql客户端默认字符集def">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-14T00:48:16.000Z">
+<meta property="article:modified_time" content="2022-10-30T08:33:48.245Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>mysql8 免安装配置 - SimpleMw&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
+  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+      <strong>SimpleMw&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">mysql8 免安装配置</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-10-14 08:48" pubdate>
+          2020年10月14日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql8 免安装配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li><p>解压压缩包</p>
+</li>
+<li><p>配置环境变量 path中加入mysql的bin路径</p>
+</li>
+<li><p>myql8解压根路径下新建 my.ini文件,写入以下(my.ini为配置文件)，其中mysql的安装路径以及数据库的数据存放路径要修改相应的位置，若以前解压目录下存在data文件夹，可以删除</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[mysql]</span><br><span class="hljs-comment"># 设置mysql客户端默认字符集</span><br><span class="hljs-attr">default-character-set</span>=utf8<br> <br><span class="hljs-section">[mysqld]</span><br><span class="hljs-comment"># 绑定IPv4</span><br><span class="hljs-attr">bind-address</span>=<span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span><br><span class="hljs-comment"># 设置端口号</span><br><span class="hljs-attr">port</span>=<span class="hljs-number">3306</span><br><span class="hljs-comment"># 设置mysql的安装目录，即解压目录</span><br><span class="hljs-attr">basedir</span>=D:\\uwork\\mysql\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">19</span>-winx64<br><span class="hljs-comment"># 设置数据库的数据存放目录</span><br><span class="hljs-attr">datadir</span>=D:\\uwork\\mysql\\mysql-<span class="hljs-number">8.0</span>.<span class="hljs-number">19</span>-winx64\\data<br><span class="hljs-comment"># 设置允许最大连接数</span><br><span class="hljs-attr">max_connections</span>=<span class="hljs-number">200</span><br><span class="hljs-comment"># 设置允许连接失败次数</span><br><span class="hljs-attr">max_connect_errors</span>=<span class="hljs-number">10</span><br><span class="hljs-comment"># 设置服务端的默认字符集</span><br><span class="hljs-attr">character-set-server</span>=utf8<br><span class="hljs-comment"># 创建表使用的默认存储引擎</span><br><span class="hljs-attr">default-storage-engine</span>=INNODB<br><span class="hljs-comment"># 使用“mysql_native_password”插件认证</span><br><span class="hljs-attr">default_authentication_plugin</span>=mysql_native_password<br><span class="hljs-comment"># 设置只读属性</span><br><span class="hljs-attr">read-only</span>=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>初始化mysql      <strong>mysqld –initialize –console</strong>    等待初始化完成，此时会自动创建root用户</p>
+<p>日志中显示为   root@localhost：一串随机密码      可以记下随机密码等会登录</p>
+<p>该操作完成后，根目录下会存在data文件夹</p>
+</li>
+<li><p>安装mysql服务 <strong>mysqld –install mysql –defaults-file&#x3D;”D:\uwork\mysql\mysql-8.0.19-winx64\my.ini”</strong></p>
+<p>注：报错 Install&#x2F;Remove of the Service Denied! 原因为cmd未以管理员运行</p>
+<p>该操作是创建mysql服务在windows的服务中</p>
+</li>
+<li><p>启动服务 </p>
+<ul>
+<li>第一种 在windows的服务中 找到 mysql 点启动</li>
+<li>第二种 cmd中输入 <strong>net start mysql</strong>      <strong>(</strong>  <strong>net stop mysql 是关闭服务</strong> <strong>)</strong></li>
+</ul>
+</li>
+<li><p>登录mysql</p>
+<p><strong>mysql -u  root -p</strong></p>
+<p>提示输入 password   则输入刚才记下的 密码，成功则进行下面修改密码，失败则操作下下步</p>
+</li>
+</ul>
+<hr>
+<p><font color=red size=4>登录正常改密</font></p>
+<ul>
+<li><p>修改user密码</p>
+<p> <strong>ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘新密码’;</strong></p>
+<p>刷新权限</p>
+<p><strong>flush privileges;</strong></p>
+</li>
+<li><p>退出重新使用新密码登录，大功告成</p>
+</li>
+</ul>
+<hr>
+<p><font color=red size=4>密码输入错误解决</font></p>
+<p>输入记下的随机密码报错，则一般是密码错误(或者其它玩意)</p>
+<ul>
+<li><p>解决办法，免密登录后然后删除密码</p>
+</li>
+<li><p>关闭mysql服务   <strong>net stop mysql</strong></p>
+</li>
+<li><p>在bin目录cmd下 输入 <strong>mysqld –console –skip-grant-tables –shared-memory</strong> ，输入成功后不管它</p>
+</li>
+<li><p>新建cmd窗口  输入<strong>mysql</strong>  登录数据库   ,然后输入  <strong>use mysql</strong>   连接数据库</p>
+</li>
+<li><p>(这里开始就是操作数据库了,后面都加分号)输入 <strong>show tables;</strong>  显示所有的表    </p>
+<ul>
+<li>（查询语句，查询user表，authentication_string 就是密码列名）</li>
+</ul>
+<p>select user,host, authentication_string from user;       </p>
+<ul>
+<li>（修改密码为空）</li>
+</ul>
+<p>update mysql.user set authentication_string &#x3D; ‘’ where user &#x3D; ‘root’ and host &#x3D; ‘localhost’;</p>
+</li>
+</ul>
+<p>修改成功后有 query ok字样</p>
+<ul>
+<li><strong>exit</strong>  退出数据库连接，关闭第一个cmd窗口</li>
+<li>cmd窗口中 重启服务   <strong>net start mysql</strong>    然后   <strong>mysql -u  root -p</strong>  ，输入密码时直接回车就登录进去了</li>
+<li>最后按上面步骤修改密码</li>
+</ul>
+<hr>
+<p><font color='red'>创建用户</font></p>
+<ul>
+<li>创建用户</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">create user canal identified by &#x27;canal&#x27;;<br>update mysql.user set authentication_string = &#x27;&#x27; where user = &#x27;canal&#x27; and host = &#x27;localhost&#x27;;<br>ALTER USER &#x27;canal&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>授权</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">grant select,replication slave,replication client on*.* to &#x27;canal&#x27;@&#x27;%&#x27;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">grant all privileges on *.* to &#x27;canal&#x27;@&#x27;%&#x27;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>刷新权限</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">flush privileges<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/sites/simplemw/deploys/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/sites/simplemw/deploys/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql%E7%9B%B8%E5%85%B3/" class="category-chain-item">Mysql相关</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/sites/simplemw/deploys/tags/Mysql/">#Mysql</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mysql8 免安装配置</div>
+      <div>https://app.netlify.com/sites/simplemw/deploys/2020/10/14/mysql-mysql8配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Wp</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年10月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2020/10/17/spring-IOC%E5%92%8CAOP/" title="IOC和AOP">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IOC和AOP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2020/10/14/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" title="mysql数据库连接">
+                        <span class="hidden-mobile">mysql数据库连接</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/sites/simplemw/deploys/js/events.js" ></script>
+<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

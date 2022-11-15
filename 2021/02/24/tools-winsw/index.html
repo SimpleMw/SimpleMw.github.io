@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
+  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wp">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="使用场景： 将jar程序设置为开机启动(注：windows上) 方法一：vbs文件方式原理将文件放入windows启动文件夹，开机启动时会执行vbs文件 创建bat文件将 java -jar xxxx.jar 执行命令放入bat文件中 123@echo offstart java -jar xxxx.jarpause  创建vbs文件12set ws&#x3D;WScript.CreateObject(&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows开机启动jar">
+<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2021/02/24/tools-winsw/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="使用场景： 将jar程序设置为开机启动(注：windows上) 方法一：vbs文件方式原理将文件放入windows启动文件夹，开机启动时会执行vbs文件 创建bat文件将 java -jar xxxx.jar 执行命令放入bat文件中 123@echo offstart java -jar xxxx.jarpause  创建vbs文件12set ws&#x3D;WScript.CreateObject(&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-24T08:34:11.000Z">
+<meta property="article:modified_time" content="2021-11-15T01:30:53.153Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="服务部署">
+<meta property="article:tag" content="windows开机启动jar">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>windows开机启动jar - SimpleMw&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
+  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+      <strong>SimpleMw&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">windows开机启动jar</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-24 16:34" pubdate>
+          2021年2月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">windows开机启动jar</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>使用场景：</p>
+<p>将jar程序设置为开机启动(注：windows上)</p>
+<h4 id="方法一：vbs文件方式"><a href="#方法一：vbs文件方式" class="headerlink" title="方法一：vbs文件方式"></a>方法一：vbs文件方式</h4><p>原理将文件放入windows启动文件夹，开机启动时会执行vbs文件</p>
+<h5 id="创建bat文件"><a href="#创建bat文件" class="headerlink" title="创建bat文件"></a>创建bat文件</h5><p>将 java -jar xxxx.jar 执行命令放入bat文件中</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">start</span> java -jar xxxx.jar<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="创建vbs文件"><a href="#创建vbs文件" class="headerlink" title="创建vbs文件"></a>创建vbs文件</h5><figure class="highlight vbs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vbs"><span class="hljs-keyword">set</span> ws=WScript.<span class="hljs-built_in">CreateObject</span>(<span class="hljs-string">&quot;WScript.Shell&quot;</span>) <br>ws.Run <span class="hljs-string">&quot;C:\xxxx.bat /start&quot;</span>,<span class="hljs-number">0</span> <br></code></pre></td></tr></table></figure>
+
+<h5 id="创建vbs快捷方式"><a href="#创建vbs快捷方式" class="headerlink" title="创建vbs快捷方式"></a>创建vbs快捷方式</h5><p>创建该vbs文件的快捷方式放入windows的启动文件夹内，不同系统文件夹路径不同</p>
+<p>如：win10专业版  C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</p>
+<p>若找不到则直接资源管理器打开该地址 或者 必找到位置方式 win+R 键入 shell:startup回车</p>
+<p>缺点：若给直接使用的人使用，不便于部署</p>
+<h4 id="方法二：windows服务方式"><a href="#方法二：windows服务方式" class="headerlink" title="方法二：windows服务方式"></a>方法二：windows服务方式</h4><h5 id="失败案例-sc"><a href="#失败案例-sc" class="headerlink" title="失败案例 sc"></a>失败案例 sc</h5><p>通过windows自带的sc.exe工具创建windows服务</p>
+<ul>
+<li>创建</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sc.exe create XXXXname binpath= C:\XXXX.bat  start= auto<br></code></pre></td></tr></table></figure>
+
+<p>格式为 sc.exe create 服务名 binpath&#x3D; 需要自启的bat路径  start&#x3D; auto(服务启动方式)</p>
+<ul>
+<li>删除</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sc.exe delete XXXXname<br></code></pre></td></tr></table></figure>
+
+<p>格式为 sc.exe delete 服务名</p>
+<p><font color=red>结果：</font>可创建服务，但启动服务超时(windows 1053)，网上找了很多解决方式如修改执行权限等无一解决，目前猜想，windows服务只能启动.exe文件，无法执行.bat文件</p>
+<h5 id="成功案例一-winsw"><a href="#成功案例一-winsw" class="headerlink" title="成功案例一 winsw"></a>成功案例一 winsw</h5><p>使用第三方winsw程序，原理为注册window服务启动winsw.exe，再由winsw.exe启动java程序</p>
+<ul>
+<li><p>环境需要JDK，所以jdk安装必不可少</p>
+</li>
+<li><p>下载winsw程序，由于3版本没有2版本的简洁，使用的2版本的   <a target="_blank" rel="noopener" href="https://github.com/winsw/winsw/releases">下载地址</a></p>
+</li>
+<li><p>为了区分启动的程序，需对winsw.exe改名为自定义的名字，如print.exe</p>
+</li>
+<li><p>创建.xml配置文件(注：需与上面修改的名字相同 如print.xml) </p>
+<p>内容</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务的id --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>print<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务名 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>print-service<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务描述 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>websocket 打印服务<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置jar执行方式(下面的配置表示 使用JAVA_HOME目录下的java.exe去启动jar，即java -jar print.jar) --&gt;</span><br><span class="hljs-comment">&lt;!-- 此处也可配置其它执行命令，不一定是 java -jar --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">env</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;JAVA_HOME&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;%JAVA_HOME%&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">executable</span>&gt;</span>java<span class="hljs-tag">&lt;/<span class="hljs-name">executable</span>&gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">arguments</span>&gt;</span>-jar &quot;print.jar&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">arguments</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">startmode</span>&gt;</span>Automatic<span class="hljs-tag">&lt;/<span class="hljs-name">startmode</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 服务启动的日志目录 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">logpath</span>&gt;</span>%BASE%\log<span class="hljs-tag">&lt;/<span class="hljs-name">logpath</span>&gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">logmode</span>&gt;</span>rotate<span class="hljs-tag">&lt;/<span class="hljs-name">logmode</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>创建服务</p>
+<p>cmd管理员到当前目录下</p>
+<ul>
+<li>新增windows服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">print.exe install<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>删除windows服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">print.exe uninstall<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+<p>windows运行     services.msc，找到新增的服务启动  </p>
+</li>
+<li><p>原理分析与解释</p>
+<p>启动服务成功后查看运行程序的详情，出现两个程序</p>
+<p>一个是windows服务程序（依托于java环境启动的，作用是使程序开机自启）</p>
+<p>一个是启动的jar程序，该程序由winsw.exe 执行 java -jar xxxx.jar命令启动的</p>
+<p>启动程序不会影响 运行jar包程序</p>
+</li>
+</ul>
+<p>缺点：启动程序需要JDK配置环境</p>
+<p>本质：就是创建一个执行一条命令的windows服务</p>
+<hr>
+<p>由于工作中用到的是单项目，则为了方便，写了其它bat来方便注册启动与卸载</p>
+<ul>
+<li>xml配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务的id --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>print<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务名 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>print-service<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><span class="hljs-comment">&lt;!-- service服务描述 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>websocket 打印服务<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置jar执行方式--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">env</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;JAVA_HOME&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;%JAVA_HOME%&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">executable</span>&gt;</span>printService<span class="hljs-tag">&lt;/<span class="hljs-name">executable</span>&gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">arguments</span>&gt;</span>-jar &quot;print.jar&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">arguments</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">startmode</span>&gt;</span>Automatic<span class="hljs-tag">&lt;/<span class="hljs-name">startmode</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 服务启动的日志目录 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">logpath</span>&gt;</span>%BASE%\log<span class="hljs-tag">&lt;/<span class="hljs-name">logpath</span>&gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">logmode</span>&gt;</span>rotate<span class="hljs-tag">&lt;/<span class="hljs-name">logmode</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>注册</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span><br>::获取管理员权限<br>%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span> off<br>::到当前bat执行目录,必须加/d,否则除c盘外无法切换目录<br><span class="hljs-built_in">cd</span> /d %~dp0<br>::注册服务<br><span class="hljs-built_in">print</span>.exe install<br>::由于工作中为了区分启动的服务，便于控制，故复制一个java.exe程序并改名<br><span class="hljs-built_in">copy</span> <span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe <span class="hljs-variable">%JAVA_HOME%</span>\bin\printService.exe<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span><br>::获取管理员权限<br>%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span> off<br>::到当前bat执行目录,必须加/d,否则除c盘外无法切换目录<br><span class="hljs-built_in">cd</span> /d %~dp0<br>::杀掉两个进程<br><span class="hljs-built_in">taskkill</span> /f /im <span class="hljs-built_in">print</span>.exe<br><span class="hljs-built_in">taskkill</span> /f /im printService.exe<br>::卸载服务<br><span class="hljs-built_in">print</span>.exe uninstall<br>::删除复制的java.exe<br><span class="hljs-built_in">del</span> <span class="hljs-variable">%JAVA_HOME%</span>\bin\printService.exe<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>开启服务</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span><br>::获取管理员权限<br>%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span> off<br>::停止服务<br>@<span class="hljs-built_in">net</span> stop <span class="hljs-built_in">print</span>-service<br>::启动服务<br>@<span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> <span class="hljs-built_in">print</span>-service<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭服务</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span><br>::获取管理员权限<br>%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span> off<br>::工作需要就直接杀进程<br><span class="hljs-built_in">taskkill</span> /f /im <span class="hljs-built_in">print</span>.exe<br><span class="hljs-built_in">taskkill</span> /f /im printService.exe<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="成功案例二-nssm"><a href="#成功案例二-nssm" class="headerlink" title="成功案例二 nssm"></a>成功案例二 nssm</h5><p>使用第三方nssm程序，原理为注册window服务启动nssm.exe，再由nssm.exe启动java程序</p>
+<ul>
+<li><p>下载nssm程序软件  <a target="_blank" rel="noopener" href="https://nssm.cc/download">下载地址</a></p>
+</li>
+<li><p>官方常用命令 <a target="_blank" rel="noopener" href="https://nssm.cc/commands">地址</a></p>
+</li>
+<li><p>创建服务</p>
+<ul>
+<li>新增windows服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">nssm install 服务名 执行文件路径   若文件需要其它程序执行如jar，可以创建bat文件，将此处的bat作为执行文件</span><br>nssm install printService  %cd%\print.bat<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载window服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">nssm remove 服务名</span><br>nssm remove printService<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nssm start printService<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nssm stop printService<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>原理分析：与上面winsw原理一致</p>
+<hr>
+<p>由于工作中用到的是单项目，则为了方便，写了其它bat来方便注册启动与卸载，与上面winsw一样</p>
+<ul>
+<li>实际执行bat</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span><br><span class="hljs-built_in">cd</span> /d %~dp0<br>printService.exe -jar <span class="hljs-built_in">print</span>.jar<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>注册</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bat">%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span><br><span class="hljs-built_in">cd</span> /d %~dp0<br><span class="hljs-built_in">copy</span> &quot;<span class="hljs-variable">%JAVA_HOME%</span>\bin\java.exe&quot; &quot;<span class="hljs-variable">%JAVA_HOME%</span>\bin\printService.exe&quot;<br>nssm install printService  <span class="hljs-variable">%cd%</span>\<span class="hljs-built_in">print</span>.bat<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bat">%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span><br><span class="hljs-built_in">cd</span> /d %~dp0<br>nssm stop printService<br><span class="hljs-built_in">del</span> &quot;<span class="hljs-variable">%JAVA_HOME%</span>\bin\printService.exe&quot;<br>nssm remove printService confirm<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bat">%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span><br><span class="hljs-built_in">cd</span> /d %~dp0<br><span class="hljs-built_in">taskkill</span> /f /im <span class="hljs-built_in">print</span>.exe<br><span class="hljs-built_in">taskkill</span> /f /im printService.exe<br>nssm stop printService<br>nssm <span class="hljs-built_in">start</span> printService<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭</li>
+</ul>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bat">%<span class="hljs-number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="hljs-built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="hljs-number">1</span>)(window.close)&amp;&amp;<span class="hljs-keyword">exit</span><br>@<span class="hljs-built_in">echo</span><br>nssm stop printService<br><span class="hljs-built_in">taskkill</span> /f /im <span class="hljs-built_in">print</span>.exe<br><span class="hljs-built_in">taskkill</span> /f /im printService.exe<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/sites/simplemw/deploys/categories/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" class="category-chain-item">服务部署</a>
+  
+  
+    <span>></span>
+    
+  <a href="/sites/simplemw/deploys/categories/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/windows%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8jar/" class="category-chain-item">windows开机启动jar</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/sites/simplemw/deploys/tags/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">#服务部署</a>
+      
+        <a href="/sites/simplemw/deploys/tags/windows%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8jar/">#windows开机启动jar</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>windows开机启动jar</div>
+      <div>https://app.netlify.com/sites/simplemw/deploys/2021/02/24/tools-winsw/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Wp</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2021/03/02/java%E5%9F%BA%E7%A1%80-%E9%94%81/" title="java各种锁">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java各种锁</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2021/01/27/springBoot-websocket/" title="Websocket">
+                        <span class="hidden-mobile">Websocket</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/sites/simplemw/deploys/js/events.js" ></script>
+<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
+  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wp">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一种点线特效根据 网上大佬Next主题的教程，修改Chic主题（https:&#x2F;&#x2F;asdfv1929.github.io&#x2F;2018&#x2F;07&#x2F;07&#x2F;next-add-dynamicbg&#x2F;）  添加js文件 dynamic.js ..\themes\Chic\source\js 路径下添加 123456789101112131415161718192021222324252627282930313233">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chic主题电线背景特效添加">
+<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="第一种点线特效根据 网上大佬Next主题的教程，修改Chic主题（https:&#x2F;&#x2F;asdfv1929.github.io&#x2F;2018&#x2F;07&#x2F;07&#x2F;next-add-dynamicbg&#x2F;）  添加js文件 dynamic.js ..\themes\Chic\source\js 路径下添加 123456789101112131415161718192021222324252627282930313233">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-04T04:40:44.000Z">
+<meta property="article:modified_time" content="2021-11-15T01:30:53.123Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Chic主题电线背景特效添加 - SimpleMw&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
+  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+      <strong>SimpleMw&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Chic主题电线背景特效添加</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-10-04 12:40" pubdate>
+          2019年10月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Chic主题电线背景特效添加</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="第一种点线特效"><a href="#第一种点线特效" class="headerlink" title="第一种点线特效"></a>第一种点线特效</h3><p>根据 网上大佬Next主题的教程，修改Chic主题（<a target="_blank" rel="noopener" href="https://asdfv1929.github.io/2018/07/07/next-add-dynamicbg/%EF%BC%89">https://asdfv1929.github.io/2018/07/07/next-add-dynamicbg/）</a></p>
+<ul>
+<li><p>添加js文件 dynamic.js</p>
+<p>..\themes\Chic\source\js 路径下添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;canvas&quot;</span>);<br><span class="hljs-keyword">var</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&quot;2d&quot;</span>);<br><span class="hljs-keyword">var</span> cw = canvas.<span class="hljs-property">width</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerWidth</span>,<br>  cx = cw / <span class="hljs-number">2</span>;<br><span class="hljs-keyword">var</span> ch = canvas.<span class="hljs-property">height</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span>,<br>  cy = ch / <span class="hljs-number">2</span>;<br><br>ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&quot;#000&quot;</span>;<br><span class="hljs-keyword">var</span> linesNum = <span class="hljs-number">16</span>;<br><span class="hljs-keyword">var</span> linesRy = [];<br><span class="hljs-keyword">var</span> requestId = <span class="hljs-literal">null</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Line</span>(<span class="hljs-params">flag</span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">flag</span> = flag;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span> = &#123;&#125;;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span> = &#123;&#125;;<br>  <span class="hljs-keyword">if</span> (flag == <span class="hljs-string">&quot;v&quot;</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span> = ch;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">0</span>, ch);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">0</span>, ch);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (flag == <span class="hljs-string">&quot;h&quot;</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span> = cw;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">0</span>, cw);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">0</span>, cw);<br>  &#125;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">va</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">25</span>, <span class="hljs-number">100</span>) / <span class="hljs-number">100</span>;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">vb</span> = <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-number">25</span>, <span class="hljs-number">100</span>) / <span class="hljs-number">100</span>;<br><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">draw</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    ctx.<span class="hljs-property">strokeStyle</span> = <span class="hljs-string">&quot;#ccc&quot;</span>;<br>    ctx.<span class="hljs-title function_">beginPath</span>();<br>    ctx.<span class="hljs-title function_">moveTo</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span>);<br>    ctx.<span class="hljs-title function_">lineTo</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span>);<br>    ctx.<span class="hljs-title function_">stroke</span>();<br>  &#125;<br><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">update</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">flag</span> == <span class="hljs-string">&quot;v&quot;</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span> += <span class="hljs-variable language_">this</span>.<span class="hljs-property">va</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span> += <span class="hljs-variable language_">this</span>.<span class="hljs-property">vb</span>;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (flag == <span class="hljs-string">&quot;h&quot;</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span> += <span class="hljs-variable language_">this</span>.<span class="hljs-property">va</span>;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span> += <span class="hljs-variable language_">this</span>.<span class="hljs-property">vb</span>;<br>    &#125;<br><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">edges</span>();<br>  &#125;<br><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">edges</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">flag</span> == <span class="hljs-string">&quot;v&quot;</span>) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span> &lt; <span class="hljs-number">0</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">x</span> &gt; cw) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">va</span> *= -<span class="hljs-number">1</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span> &lt; <span class="hljs-number">0</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">x</span> &gt; cw) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">vb</span> *= -<span class="hljs-number">1</span>;<br>      &#125;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (flag == <span class="hljs-string">&quot;h&quot;</span>) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span> &lt; <span class="hljs-number">0</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>.<span class="hljs-property">y</span> &gt; ch) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">va</span> *= -<span class="hljs-number">1</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span> &lt; <span class="hljs-number">0</span> || <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>.<span class="hljs-property">y</span> &gt; ch) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">vb</span> *= -<span class="hljs-number">1</span>;<br>      &#125;<br>    &#125;<br>  &#125;<br><br>&#125;<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; linesNum; i++) &#123;<br>  <span class="hljs-keyword">var</span> flag = i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? <span class="hljs-string">&quot;h&quot;</span> : <span class="hljs-string">&quot;v&quot;</span>;<br>  <span class="hljs-keyword">var</span> l = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Line</span>(flag);<br>  linesRy.<span class="hljs-title function_">push</span>(l);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Draw</span>(<span class="hljs-params"></span>) &#123;<br>  requestId = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-title class_">Draw</span>);<br>  ctx.<span class="hljs-title function_">clearRect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, cw, ch);<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; linesRy.<span class="hljs-property">length</span>; i++) &#123;<br>    <span class="hljs-keyword">var</span> l = linesRy[i];<br>    l.<span class="hljs-title function_">draw</span>();<br>    l.<span class="hljs-title function_">update</span>();<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; linesRy.<span class="hljs-property">length</span>; i++) &#123;<br>    <span class="hljs-keyword">var</span> l = linesRy[i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = i + <span class="hljs-number">1</span>; j &lt; linesRy.<span class="hljs-property">length</span>; j++) &#123;<br>      <span class="hljs-keyword">var</span> l1 = linesRy[j]<br>      <span class="hljs-title class_">Intersect2</span>lines(l, l1);<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Init</span>(<span class="hljs-params"></span>) &#123;<br>  linesRy.<span class="hljs-property">length</span> = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; linesNum; i++) &#123;<br>    <span class="hljs-keyword">var</span> flag = i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? <span class="hljs-string">&quot;h&quot;</span> : <span class="hljs-string">&quot;v&quot;</span>;<br>    <span class="hljs-keyword">var</span> l = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Line</span>(flag);<br>    linesRy.<span class="hljs-title function_">push</span>(l);<br>  &#125;<br><br>  <span class="hljs-keyword">if</span> (requestId) &#123;<br>    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">cancelAnimationFrame</span>(requestId);<br>    requestId = <span class="hljs-literal">null</span>;<br>  &#125;<br><br>  cw = canvas.<span class="hljs-property">width</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerWidth</span>,<br>    cx = cw / <span class="hljs-number">2</span>;<br>  ch = canvas.<span class="hljs-property">height</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span>,<br>    cy = ch / <span class="hljs-number">2</span>;<br><br>  <span class="hljs-title class_">Draw</span>();<br>&#125;;<br><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title class_">Init</span>();<br><br>  <span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>, <span class="hljs-title class_">Init</span>, <span class="hljs-literal">false</span>);<br>&#125;, <span class="hljs-number">15</span>);<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Intersect2lines</span>(<span class="hljs-params">l1, l2</span>) &#123;<br>  <span class="hljs-keyword">var</span> p1 = l1.<span class="hljs-property">a</span>,<br>    p2 = l1.<span class="hljs-property">b</span>,<br>    p3 = l2.<span class="hljs-property">a</span>,<br>    p4 = l2.<span class="hljs-property">b</span>;<br>  <span class="hljs-keyword">var</span> denominator = (p4.<span class="hljs-property">y</span> - p3.<span class="hljs-property">y</span>) * (p2.<span class="hljs-property">x</span> - p1.<span class="hljs-property">x</span>) - (p4.<span class="hljs-property">x</span> - p3.<span class="hljs-property">x</span>) * (p2.<span class="hljs-property">y</span> - p1.<span class="hljs-property">y</span>);<br>  <span class="hljs-keyword">var</span> ua = ((p4.<span class="hljs-property">x</span> - p3.<span class="hljs-property">x</span>) * (p1.<span class="hljs-property">y</span> - p3.<span class="hljs-property">y</span>) - (p4.<span class="hljs-property">y</span> - p3.<span class="hljs-property">y</span>) * (p1.<span class="hljs-property">x</span> - p3.<span class="hljs-property">x</span>)) / denominator;<br>  <span class="hljs-keyword">var</span> ub = ((p2.<span class="hljs-property">x</span> - p1.<span class="hljs-property">x</span>) * (p1.<span class="hljs-property">y</span> - p3.<span class="hljs-property">y</span>) - (p2.<span class="hljs-property">y</span> - p1.<span class="hljs-property">y</span>) * (p1.<span class="hljs-property">x</span> - p3.<span class="hljs-property">x</span>)) / denominator;<br>  <span class="hljs-keyword">var</span> x = p1.<span class="hljs-property">x</span> + ua * (p2.<span class="hljs-property">x</span> - p1.<span class="hljs-property">x</span>);<br>  <span class="hljs-keyword">var</span> y = p1.<span class="hljs-property">y</span> + ua * (p2.<span class="hljs-property">y</span> - p1.<span class="hljs-property">y</span>);<br>  <span class="hljs-keyword">if</span> (ua &gt; <span class="hljs-number">0</span> &amp;&amp; ub &gt; <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-title function_">markPoint</span>(&#123;<br>      <span class="hljs-attr">x</span>: x,<br>      <span class="hljs-attr">y</span>: y<br>    &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">markPoint</span>(<span class="hljs-params">p</span>) &#123;<br>  ctx.<span class="hljs-title function_">beginPath</span>();<br>  ctx.<span class="hljs-title function_">arc</span>(p.<span class="hljs-property">x</span>, p.<span class="hljs-property">y</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>);<br>  ctx.<span class="hljs-title function_">fill</span>();<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">randomIntFromInterval</span>(<span class="hljs-params">mn, mx</span>) &#123;<br>  <span class="hljs-keyword">return</span> ~~(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (mx - mn + <span class="hljs-number">1</span>) + mn);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>添加dynamic.ejs文件 ..\themes\Chic\layout\_partial\dynamic.ejs</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/blog/js/dynamic.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>注：src中的blog是根据路径添加的</p>
+</li>
+<li><p>修改页面显示配置文件 ..\themes\Chic\layout\layout.ejs</p>
+<ul>
+<li>body里添加</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">bg_content</span>&quot;&gt;    &lt;<span class="hljs-symbol">canvas</span> <span class="hljs-symbol">id</span>=&quot;<span class="hljs-symbol">canvas</span>&quot;&gt;&lt;/<span class="hljs-symbol">canvas</span>&gt;&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>body外下面添加(写在head里面会报错)</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">&lt;%- <span class="hljs-keyword">partial</span>(<span class="hljs-string">&#x27;_partial/dynamic&#x27;</span>,&#123;cache: <span class="hljs-literal">true</span>&#125;) %&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="第二种点线特效"><a href="#第二种点线特效" class="headerlink" title="第二种点线特效"></a>第二种点线特效</h3><ul>
+<li><p>添加pointline.ejs文件 ..\themes\Chic\layout\_partial\pointline.ejs</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;script type=&quot;text/javascript&quot;color=&quot;0,0,0&quot; opacity=&#x27;0.2&#x27; zIndex=&quot;-2&quot; count=&quot;120&quot; src=&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>注：color-设置颜色 opacity-设置透明度 zIndex-设置堆叠顺序 count-设置线的数量</p>
+</li>
+<li><p>修改页面显示配置文件 ..\themes\Chic\layout\layout.ejs</p>
+<p>注：须在body下外面添加，不然报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;%- partial(&#x27;_partial/pointline&#x27;,&#123;cache: true&#125;) %&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>重新清理启动</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/sites/simplemw/deploys/categories/hexo%E7%9B%B8%E5%85%B3/" class="category-chain-item">hexo相关</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/sites/simplemw/deploys/tags/hexo/">#hexo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chic主题电线背景特效添加</div>
+      <div>https://app.netlify.com/sites/simplemw/deploys/2019/10/04/hexo-Chic点线背景特效添加/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Wp</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年10月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" title="人体时钟特效">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">人体时钟特效</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2019/10/04/hexo-Chic%E7%88%86%E7%82%B8%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" title="Chic主题爆炸特效添加">
+                        <span class="hidden-mobile">Chic主题爆炸特效添加</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/sites/simplemw/deploys/js/events.js" ></script>
+<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

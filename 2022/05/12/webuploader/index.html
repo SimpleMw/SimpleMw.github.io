@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
+  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Wp">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景上传大文件时使用二进制易造成超时上传，故采用分片上传的方式，一步一步接收，然后存入文件 技术：百度的webuploader 前端js版本 官网下载webuploader  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webuploader">
+<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2022/05/12/webuploader/index.html">
+<meta property="og:site_name" content="SimpleMw&#39;s Blog">
+<meta property="og:description" content="背景上传大文件时使用二进制易造成超时上传，故采用分片上传的方式，一步一步接收，然后存入文件 技术：百度的webuploader 前端js版本 官网下载webuploader  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-12T00:40:27.000Z">
+<meta property="article:modified_time" content="2022-06-27T06:08:42.021Z">
+<meta property="article:author" content="Wp">
+<meta property="article:tag" content="webuploader">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>webuploader - SimpleMw&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
+  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+      <strong>SimpleMw&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">webuploader</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-12 08:40" pubdate>
+          2022年5月12日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          97 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">webuploader</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h5><p>上传大文件时使用二进制易造成超时上传，故采用分片上传的方式，一步一步接收，然后存入文件</p>
+<p>技术：百度的webuploader</p>
+<h5 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h5><h6 id="js版本"><a href="#js版本" class="headerlink" title="js版本"></a>js版本</h6><ul>
+<li>官网下载webuploader</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>webuploader<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/jquery-1.9.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;webuploader-0.1.5/webuploader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;js/bootstrap.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;webuploader-0.1.5/webuploader.css&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;css/bootstrap.min.css&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: center;&quot;</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fileList&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;uploader-list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>			<span class="hljs-comment">&lt;!--存放文件的容器--&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;picker&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;upload-container&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: center;&quot;</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;ctlBtn&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default&quot;</span> <span class="hljs-attr">multiple</span>=<span class="hljs-string">&quot;multiple&quot;</span>&gt;</span>选择大文件<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;uploadProgress&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-default&quot;</span>&gt;</span>开始上传<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">		$list = $(<span class="hljs-string">&#x27;#fileList&#x27;</span>);</span><br><span class="language-javascript">		<span class="hljs-keyword">var</span> uploader = <span class="hljs-title class_">WebUploader</span>.<span class="hljs-title function_">create</span>(&#123;</span><br><span class="language-javascript">			<span class="hljs-attr">auto</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//选完文件后，是否自动上传</span></span><br><span class="language-javascript">			<span class="hljs-attr">swf</span>: <span class="hljs-string">&#x27;/webuploader-0.1.5/Uploader.swf&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">server</span>: <span class="hljs-string">&#x27;http://localhost:8081/webuploader/upload&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">pick</span>: <span class="hljs-string">&#x27;#picker&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">multiple</span>: <span class="hljs-literal">true</span>,<span class="hljs-comment">//选择多个</span></span><br><span class="language-javascript">			<span class="hljs-attr">duplicate</span>: <span class="hljs-literal">true</span>,<span class="hljs-comment">//去重,根据文件名字、文件大小和最后修改时间来生成hash Key</span></span><br><span class="language-javascript">			<span class="hljs-attr">chunked</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//开启分片上传 </span></span><br><span class="language-javascript">			<span class="hljs-attr">threads</span>: <span class="hljs-number">30</span>, <span class="hljs-comment">//并发数</span></span><br><span class="language-javascript">			chunkSize : <span class="hljs-number">50</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>, <span class="hljs-comment">//每片100M</span></span><br><span class="language-javascript">			<span class="hljs-attr">fileNumLimit</span>: <span class="hljs-number">1024</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">fileSizeLimit</span>: <span class="hljs-number">50</span>*<span class="hljs-number">1024</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>,<span class="hljs-comment">//50G 验证文件总大小是否超出限制, 超出则不允许加入队列</span></span><br><span class="language-javascript">			<span class="hljs-attr">fileSingleSizeLimit</span>: <span class="hljs-number">10</span>*<span class="hljs-number">1024</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>, <span class="hljs-comment">//10G 验证单个文件大小是否超出限制, 超出则不允许加入队列</span></span><br><span class="language-javascript">			<span class="hljs-attr">disableGlobalDnd</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。</span></span><br><span class="language-javascript">			<span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,</span><br><span class="language-javascript">			<span class="hljs-comment">//resize: false //不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！</span></span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">		<span class="hljs-comment">// 当有文件被添加进队列的时候</span></span><br><span class="language-javascript">		uploader.<span class="hljs-title function_">on</span>( <span class="hljs-string">&#x27;fileQueued&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"> file </span>) &#123;</span><br><span class="language-javascript">			$list.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;&lt;div id=&quot;&#x27;</span> + file.<span class="hljs-property">id</span> + <span class="hljs-string">&#x27;&quot; class=&quot;item&quot;&gt;&#x27;</span> +</span><br><span class="language-javascript">				<span class="hljs-string">&#x27;&lt;h4 class=&quot;info&quot;&gt;&#x27;</span> + file.<span class="hljs-property">name</span> + <span class="hljs-string">&#x27;&lt;button type=&quot;button&quot; fileId=&quot;&#x27;</span> + file.<span class="hljs-property">id</span> + <span class="hljs-string">&#x27;&quot; class=&quot;btn btn-danger btn-delete&quot;&gt;删除&lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt;&lt;/button&gt;&lt;/h4&gt;&#x27;</span> +</span><br><span class="language-javascript">				<span class="hljs-string">&#x27;&lt;p class=&quot;state&quot;&gt;等待上传&lt;/p&gt;&#x27;</span> +</span><br><span class="language-javascript">				<span class="hljs-string">&#x27;&lt;/div&gt;&#x27;</span>);</span><br><span class="language-javascript">				</span><br><span class="language-javascript">				</span><br><span class="language-javascript">			<span class="hljs-comment">//删除</span></span><br><span class="language-javascript">			$(<span class="hljs-string">&quot;.btn-delete&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">				uploader.<span class="hljs-title function_">removeFile</span>(uploader.<span class="hljs-title function_">getFile</span>($(<span class="hljs-variable language_">this</span>).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&quot;fileId&quot;</span>), <span class="hljs-literal">true</span>));</span><br><span class="language-javascript">				$(<span class="hljs-variable language_">this</span>).<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">fadeOut</span>();<span class="hljs-comment">//显示删除</span></span><br><span class="language-javascript">				$(<span class="hljs-variable language_">this</span>).<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">parent</span>().<span class="hljs-title function_">remove</span>();<span class="hljs-comment">//DOM上删除</span></span><br><span class="language-javascript">			&#125;);</span><br><span class="language-javascript">			</span><br><span class="language-javascript">			<span class="hljs-comment">//md5计算</span></span><br><span class="language-javascript">			uploader.<span class="hljs-title function_">md5File</span>(file)</span><br><span class="language-javascript">				.<span class="hljs-title function_">progress</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">percentage</span>) &#123;</span><br><span class="language-javascript">					<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Percentage:&#x27;</span>, percentage);</span><br><span class="language-javascript">				&#125;)</span><br><span class="language-javascript">				<span class="hljs-comment">// 完成</span></span><br><span class="language-javascript">				.<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">fileMd5</span>) &#123; <span class="hljs-comment">// 完成</span></span><br><span class="language-javascript">					<span class="hljs-keyword">var</span> end = +<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();</span><br><span class="language-javascript">					<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;before-send-file  preupload: file.size=&quot;</span>+file.<span class="hljs-property">size</span>+<span class="hljs-string">&quot; file.md5=&quot;</span>+fileMd5);</span><br><span class="language-javascript">					file.<span class="hljs-property">wholeMd5</span> = fileMd5;<span class="hljs-comment">//获取到了md5</span></span><br><span class="language-javascript">					uploader.<span class="hljs-property">options</span>.<span class="hljs-property">formData</span>.<span class="hljs-property">md5value</span> = file.<span class="hljs-property">wholeMd5</span>;<span class="hljs-comment">//每个文件都附带一个md5，便于实现秒传</span></span><br><span class="language-javascript">					<span class="hljs-comment">//$(&#x27;#&#x27; + file.id).find(&#x27;p.state&#x27;).text(&#x27;文件压缩完毕，可以点击上传了&#x27;);</span></span><br><span class="language-javascript">					<span class="hljs-comment">//$(&#x27;#uploadButton&#x27;).append(&#x27;&lt;div id=&quot;UploadBtn&quot; class=&quot;webuploader-pick&quot; style=&quot;margin-right:10px;background: #00b7ee; &quot;&gt;开始上传&lt;/div&gt;&#x27; );</span></span><br><span class="language-javascript">					<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;MD5=&quot;</span>+fileMd5);</span><br><span class="language-javascript">				&#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript">		</span><br><span class="language-javascript"></span><br><span class="language-javascript">		<span class="hljs-comment">// 文件上传过程中创建进度条实时显示。</span></span><br><span class="language-javascript">		uploader.<span class="hljs-title function_">on</span>( <span class="hljs-string">&#x27;uploadProgress&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"> file, percentage </span>) &#123;</span><br><span class="language-javascript">			<span class="hljs-keyword">var</span> $li = $( <span class="hljs-string">&#x27;#&#x27;</span>+file.<span class="hljs-property">id</span> ),</span><br><span class="language-javascript">				$percent = $li.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;.progress .progress-bar&#x27;</span>);</span><br><span class="language-javascript"></span><br><span class="language-javascript">			<span class="hljs-comment">// 避免重复创建</span></span><br><span class="language-javascript">			<span class="hljs-keyword">if</span> ( !$percent.<span class="hljs-property">length</span> ) &#123;</span><br><span class="language-javascript">				$percent = $(<span class="hljs-string">&#x27;&lt;div class=&quot;progress progress-striped active&quot;&gt;&#x27;</span> +</span><br><span class="language-javascript">				  <span class="hljs-string">&#x27;&lt;div class=&quot;progress-bar&quot; role=&quot;progressbar&quot; style=&quot;width: 0%&quot;&gt;&#x27;</span> +</span><br><span class="language-javascript">				  <span class="hljs-string">&#x27;&lt;/div&gt;&#x27;</span> +</span><br><span class="language-javascript">				<span class="hljs-string">&#x27;&lt;/div&gt;&#x27;</span>).<span class="hljs-title function_">appendTo</span>( $li ).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;.progress-bar&#x27;</span>);</span><br><span class="language-javascript">			&#125;</span><br><span class="language-javascript"></span><br><span class="language-javascript">			$li.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;p.state&#x27;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&#x27;上传中&#x27;</span>);</span><br><span class="language-javascript"></span><br><span class="language-javascript">			$percent.<span class="hljs-title function_">css</span>( <span class="hljs-string">&#x27;width&#x27;</span>, percentage * <span class="hljs-number">100</span> + <span class="hljs-string">&#x27;%&#x27;</span> );</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">		uploader.<span class="hljs-title function_">on</span>( <span class="hljs-string">&#x27;uploadSuccess&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"> file </span>) &#123;</span><br><span class="language-javascript">			$( <span class="hljs-string">&#x27;#&#x27;</span>+file.<span class="hljs-property">id</span> ).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;p.state&#x27;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&#x27;已上传&#x27;</span>);</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">		uploader.<span class="hljs-title function_">on</span>( <span class="hljs-string">&#x27;uploadError&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"> file </span>) &#123;</span><br><span class="language-javascript">			$( <span class="hljs-string">&#x27;#&#x27;</span>+file.<span class="hljs-property">id</span> ).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;p.state&#x27;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&#x27;上传出错&#x27;</span>);</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript"></span><br><span class="language-javascript">		uploader.<span class="hljs-title function_">on</span>( <span class="hljs-string">&#x27;uploadComplete&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"> file </span>) &#123;</span><br><span class="language-javascript">			$( <span class="hljs-string">&#x27;#&#x27;</span>+file.<span class="hljs-property">id</span> ).<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;.progress&#x27;</span>).<span class="hljs-title function_">fadeOut</span>();</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript">		</span><br><span class="language-javascript">		$(<span class="hljs-string">&quot;#uploadButton&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">			$(<span class="hljs-string">&#x27;#picker&#x27;</span>).<span class="hljs-title function_">onclick</span>();</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript">		</span><br><span class="language-javascript">	</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="vue版本"><a href="#vue版本" class="headerlink" title="vue版本"></a>vue版本</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div&gt;<br>    &lt;div id=&quot;picker&quot;&gt;选择文件&lt;/div&gt;<br>    &lt;ul class=&quot;file-list&quot;&gt;<br>      &lt;li class=&quot;list&quot; v-for=&quot;file in fileList&quot;&gt;<br>        &lt;span&gt;&#123;&#123;file.name&#125;&#125;&lt;/span&gt;<br>        &lt;span&gt;进度：&#123;&#123;file.percentage&#125;&#125;&lt;/span&gt;<br>      &lt;/li&gt;<br>    &lt;/ul&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script type=&quot;text/ecmascript-6&quot;&gt;<br>  // import &#x27;../assets/lib/jquery2.0.0/jquery-2.0.0.js&#x27;;<br>  import WebUploader from &#x27;webuploader&#x27;;<br><br>  const request = &#123;<br><br>  &#125;;<br><br>  export default &#123;<br>    name: &#x27;HelloWorld&#x27;,<br>    data() &#123;<br>       return &#123;<br>        options: &#123;<br>        &#125;,<br>        file: &#123;&#125;,<br>        fileList: []<br>      &#125;<br>    &#125;,<br>    mounted() &#123;<br>      this.initWebUpload();<br>    &#125;,<br>    methods: &#123;<br>      initWebUpload() &#123;<br>        const options = this.options;<br>        const $this = this;<br><br>        this.uploader = WebUploader.create(&#123;<br>          auto: true, //选完文件后，是否自动上传<br>          swf: &#x27;/webuploader-0.1.5/Uploader.swf&#x27;,<br>          server: &#x27;http://localhost:8081/webuploader/upload&#x27;,<br>          pick: &#x27;#picker&#x27;,<br>          multiple: true,//选择多个<br>          duplicate: true,//去重,根据文件名字、文件大小和最后修改时间来生成hash Key<br>          chunked: true, //开启分片上传 <br>          threads: 30, //并发数<br>          chunkSize : 50 * 1024 * 1024, //每片100M<br>          fileNumLimit: 1024,<br>          fileSizeLimit: 50*1024 * 1024 * 1024,//50G 验证文件总大小是否超出限制, 超出则不允许加入队列<br>          fileSingleSizeLimit: 10*1024 * 1024 * 1024, //10G 验证单个文件大小是否超出限制, 超出则不允许加入队列<br>          disableGlobalDnd: true, //禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。<br>          method: &#x27;POST&#x27;,<br>          //resize: false //不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！<br>        &#125;);<br><br>        // 当有文件被添加进队列的时候，添加到页面预览<br>        this.uploader.on(&#x27;fileQueued&#x27;, (file) =&gt; &#123;<br>          // this.$emit(&#x27;fileChange&#x27;, file);<br>          $this.fileList.push(file);<br>        &#125;);<br><br>        this.uploader.on(&#x27;uploadStart&#x27;, (file) =&gt; &#123;<br>          // 在这里可以准备好formData的数据<br>          //this.uploader.options.formData.key = this.keyGenerator(file);<br>        &#125;);<br><br>        this.uploader.on(&#x27;startUpload&#x27;, (file) =&gt; &#123;<br>          // 开始一次上传<br>          // this.fileList = [];<br>        &#125;);<br><br>        // 文件上传过程中创建进度条实时显示。<br>        this.uploader.on(&#x27;uploadProgress&#x27;, (file, percentage) =&gt; &#123;<br>          // this.$emit(&#x27;progress&#x27;, file, percentage);<br>          console.log(file, percentage);<br>          $this.fileList.forEach((item, index) =&gt; &#123;<br>            if (item.id === file.id) &#123;<br>              item.percentage = percentage * 100;<br>              $this.fileList.splice(index, 1, item);<br>              return;<br>            &#125;<br>          &#125;);<br>        &#125;);<br><br>        this.uploader.on(&#x27;uploadSuccess&#x27;, (file, response) =&gt; &#123;<br>          // this.$emit(&#x27;success&#x27;, file, response);<br>          console.log(file, response);<br>          $this.fileList.forEach((item, index) =&gt; &#123;<br>            if (item.id === file.id) &#123;<br>              item.percentage = 100;<br>              $this.fileList.splice(index, 1, item);<br>              return;<br>            &#125;<br>          &#125;);<br>        &#125;);<br><br>        this.uploader.on(&#x27;uploadError&#x27;, (file, reason) =&gt; &#123;<br>          // console.error(reason);<br>          // this.$emit(&#x27;uploadError&#x27;, file, reason);<br>        &#125;);<br><br>        this.uploader.on(&#x27;error&#x27;, (type) =&gt; &#123;<br>          let errorMessage = &#x27;&#x27;;<br>          if (type === &#x27;F_EXCEED_SIZE&#x27;) &#123;<br>            errorMessage = `文件大小不能超过$&#123;this.fileSingleSizeLimit / (1024 * 1000)&#125;M`;<br>          &#125; else if (type === &#x27;Q_EXCEED_NUM_LIMIT&#x27;) &#123;<br>            errorMessage = &#x27;文件上传已达到最大上限数&#x27;;<br>          &#125; else &#123;<br>            errorMessage = `上传出错！请检查后重新上传！错误代码$&#123;type&#125;`;<br>          &#125;<br><br>          console.error(errorMessage);<br>          // this.$emit(&#x27;error&#x27;, errorMessage);<br>        &#125;);<br><br>        this.uploader.on(&#x27;uploadComplete&#x27;, (file, response) =&gt; &#123;<br><br>          // this.$emit(&#x27;complete&#x27;, file, response);<br>        &#125;);<br><br>        this.uploader.on(&#x27;uploadFinished&#x27;, () =&gt; &#123;<br>          // 所有文件上传结束<br>          // 重置文件队列<br>          this.uploader.reset();<br>        &#125;);<br>      &#125;,<br>    &#125;<br>  &#125;<br>&lt;/script&gt;<br><br>&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;<br>&lt;style scoped&gt;<br>  #picker &#123;<br>    display: inline-block;<br>    width: 100px;<br>    padding: 7px 10px;<br>    border: 1px solid #0099CC;<br>    background: #0099CC;<br>    border-radius: 3px;<br>    color: #fff;<br>    font-size: 12px;<br>  &#125;<br><br>  #picker input &#123;<br>    display: none;<br>  &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h5><p>先接收分片的文件，然后通过RandomAccessFile写入文件中</p>
+<p>注：原理是RandomAccessFile可以指定位置写入文件流</p>
+<ul>
+<li>配置类(跨域)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;<br><br>    <span class="hljs-comment">//配置跨域请求</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addCorsMappings</span><span class="hljs-params">(CorsRegistry registry)</span> &#123;<br>        registry.addMapping(<span class="hljs-string">&quot;/**&quot;</span>)<br>                .allowedOrigins(<span class="hljs-string">&quot;*&quot;</span>)<br>                .allowedHeaders(<span class="hljs-string">&quot;*&quot;</span>)<br>                .allowedMethods(<span class="hljs-string">&quot;*&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>配置类(http请求大小限制)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMultipartConfigElement</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> MultipartConfigElement <span class="hljs-title function_">multipartConfigElement</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">MultipartConfigFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MultipartConfigFactory</span>();<br>        <span class="hljs-comment">//允许上传的文件最大值</span><br>        factory.setMaxFileSize(DataSize.parse(<span class="hljs-string">&quot;1024MB&quot;</span>)); <span class="hljs-comment">//KB,MB</span><br>        <span class="hljs-comment">// 设置总上传数据总大小</span><br>        factory.setMaxRequestSize(DataSize.parse(<span class="hljs-string">&quot;1024MB&quot;</span>));<br>        <span class="hljs-keyword">return</span> factory.createMultipartConfig();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>bootStrap</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml">server:<br>  port: 8081<br>  #设置临时文件夹<br>  tomcat:<br>    basedir: /root/prods/temp<br>  servlet:<br>    session:<br>      timeout: 1200<br>  reactive:<br>    session:<br>      timeout: 1200<br><br>spring:<br>  servlet:<br>    multipart:<br>      max-file-size: 400MB<br>      max-request-size: 2048MB<br><br></code></pre></td></tr></table></figure>
+
+<p>注：上述配置也不知道哪里起效的故都配置上</p>
+<ul>
+<li>实现层</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//存放临时文件目录</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">uploadPath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;/root/files/&quot;</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">lastPath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;/root/files/tmp/&quot;</span>;<br><br><span class="hljs-meta">@PostMapping(&quot;upload&quot;)</span><br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> Return <span class="hljs-title function_">upload</span><span class="hljs-params">(MultipartFileParam param)</span>&#123;<br><br>    <span class="hljs-comment">//分片下标</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">schunk</span> <span class="hljs-operator">=</span> param.getChunk();<br>    <span class="hljs-comment">//总分片数</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">schunks</span> <span class="hljs-operator">=</span> param.getChunks();<br>    <span class="hljs-comment">//文件名</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> param.getName();<br>    <span class="hljs-comment">//分片文件</span><br>    <span class="hljs-type">MultipartFile</span> <span class="hljs-variable">fileData</span> <span class="hljs-operator">=</span> param.getFile();<br>    <span class="hljs-comment">//文件大小</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">fileSize</span> <span class="hljs-operator">=</span> fileData.getSize();<br>    <span class="hljs-comment">//每片大小</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">chunkSize</span> <span class="hljs-operator">=</span> schunk+<span class="hljs-number">1</span> &lt; schunks ? fileData.getSize() : (param.getSize()-fileSize) / (schunks-<span class="hljs-number">1</span>);<br><br>    <span class="hljs-keyword">try</span> &#123;<br>        File file=<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(uploadPath);<br>        <span class="hljs-comment">//判断文件夹是否存在，不存在则创建</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> file.exists();<br>        <span class="hljs-keyword">if</span>(!flag) &#123;<br>            file.setWritable(<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>);<br>            file.mkdirs();<br>        &#125;<br><br>        <span class="hljs-comment">//生成分片文件</span><br>        <span class="hljs-keyword">if</span> (fileData.getSize() &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">tempFileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">if</span> (name != <span class="hljs-literal">null</span>) &#123;<br>                tempFileName = schunk + <span class="hljs-string">&quot;_&quot;</span> + name;<br>                <span class="hljs-type">File</span> <span class="hljs-variable">fileTemp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(uploadPath + tempFileName);<br>                fileTemp.setWritable(<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>);<br>                fileTemp.mkdirs();<br>                fileData.transferTo(fileTemp);<br>            &#125;<br>            <span class="hljs-comment">//此处由于出现流正在使用未关闭，其它的线程去读取文件的时候读取不到文件问题，故等待1秒</span><br>            Thread.sleep(<span class="hljs-number">1000</span>);<br><br>            <span class="hljs-comment">//分片文件</span><br>            <span class="hljs-type">File</span> <span class="hljs-variable">src</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(uploadPath+schunk+<span class="hljs-string">&quot;_&quot;</span>+name);<br>            <span class="hljs-comment">//目标文件</span><br>            <span class="hljs-type">File</span> <span class="hljs-variable">dest</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(lastPath+name);<br>            <span class="hljs-type">RandomAccessFile</span> <span class="hljs-variable">raf</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>            <span class="hljs-type">RandomAccessFile</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>            <span class="hljs-keyword">try</span> &#123;<br>                raf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomAccessFile</span>(src, <span class="hljs-string">&quot;r&quot;</span>);<br>                bos = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomAccessFile</span>(dest,<span class="hljs-string">&quot;rw&quot;</span>);<br>                <span class="hljs-comment">//读取文件</span><br>                bos.seek((<span class="hljs-type">long</span>)schunk* chunkSize);<br>                <span class="hljs-comment">//缓冲区</span><br>                <span class="hljs-type">byte</span>[] flush = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span> &lt;&lt; <span class="hljs-number">2</span>];<br>                <span class="hljs-comment">//接收长度</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">while</span> (-<span class="hljs-number">1</span> != (len = raf.read(flush))) &#123;<br>                    <span class="hljs-keyword">if</span> (fileSize - len &gt;= <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">//查看是否足够</span><br>                        <span class="hljs-comment">//写出</span><br>                        bos.write(flush, <span class="hljs-number">0</span>, len);<br>                        fileSize = fileSize - len; <span class="hljs-comment">//剩余量</span><br>                    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">//写出最后一次的剩余量</span><br>                        bos.write(flush, <span class="hljs-number">0</span>, (<span class="hljs-type">int</span>) fileSize);<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                &#125;<br>                raf.close();<br>                <span class="hljs-comment">//删除源文件</span><br>                src.delete();<br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                e.printStackTrace();<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThrowException</span>(<span class="hljs-string">&quot;上传失败&quot;</span>);<br>            &#125; <span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-keyword">assert</span> raf != <span class="hljs-literal">null</span>;<br>                raf.close();<br>                <span class="hljs-keyword">assert</span> bos != <span class="hljs-literal">null</span>;<br>                bos.close();<br>            &#125;<br>        &#125;<br><br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> Return.ok();<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/sites/simplemw/deploys/categories/webuploader/" class="category-chain-item">webuploader</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/sites/simplemw/deploys/tags/webuploader/">#webuploader</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>webuploader</div>
+      <div>https://app.netlify.com/sites/simplemw/deploys/2022/05/12/webuploader/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Wp</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2022/05/22/ESP8266/" title="ESP8266">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ESP8266</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/sites/simplemw/deploys/2022/04/18/%E6%96%87%E6%A1%A3%E8%BD%AC%E6%8D%A2/" title="文档转换">
+                        <span class="hidden-mobile">文档转换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/sites/simplemw/deploys/js/events.js" ></script>
+<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
