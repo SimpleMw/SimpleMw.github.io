@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
-  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="sentinel用于对请求的流量控制，熔断降级的管控 实现原理：通过拦截器对配置了限流规则的接口或者代码块进行限流和熔断降级处理 代码整合流程原理：目的微服务暴露8719端口，控制台可根据8719的接口获取埋点的信息(若该端口被已经被占用，则会开启8719自增未被占用的端口)，控制台设置规则并将规则发送到目的微服务，目的微服务在进行每次访问的时候被其拦截器拦截，根据规则来流量控制 开启控制台控制台">
 <meta property="og:type" content="article">
 <meta property="og:title" content="整合sentinel">
-<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2021/08/03/springboot-sentinel/index.html">
+<meta property="og:url" content="https://simplemw.github.io/2021/08/03/springboot-sentinel/index.html">
 <meta property="og:site_name" content="SimpleMw&#39;s Blog">
 <meta property="og:description" content="sentinel用于对请求的流量控制，熔断降级的管控 实现原理：通过拦截器对配置了限流规则的接口或者代码块进行限流和熔断降级处理 代码整合流程原理：目的微服务暴露8719端口，控制台可根据8719的接口获取埋点的信息(若该端口被已经被占用，则会开启8719自增未被占用的端口)，控制台设置规则并将规则发送到目的微服务，目的微服务在进行每次访问的时候被其拦截器拦截，根据规则来流量控制 开启控制台控制台">
 <meta property="og:locale" content="zh_CN">
@@ -56,12 +56,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -70,15 +70,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+    var CONFIG = {"hostname":"simplemw.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
-  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -95,7 +95,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+    <a class="navbar-brand" href="/">
       <strong>SimpleMw&#39;s Blog</strong>
     </a>
 
@@ -114,7 +114,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -126,7 +126,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -138,7 +138,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+              <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -203,7 +203,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -340,17 +340,17 @@
     
       <span class="category-chain">
         
-  <a href="/sites/simplemw/deploys/categories/Spring/" class="category-chain-item">Spring</a>
+  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
   
   
     <span>></span>
     
-  <a href="/sites/simplemw/deploys/categories/Spring/Spring-Cloud-Alibaba/" class="category-chain-item">Spring Cloud Alibaba</a>
+  <a href="/categories/Spring/Spring-Cloud-Alibaba/" class="category-chain-item">Spring Cloud Alibaba</a>
   
   
     <span>></span>
     
-  <a href="/sites/simplemw/deploys/categories/Spring/Spring-Cloud-Alibaba/Sentinel/" class="category-chain-item">Sentinel</a>
+  <a href="/categories/Spring/Spring-Cloud-Alibaba/Sentinel/" class="category-chain-item">Sentinel</a>
   
   
 
@@ -369,9 +369,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/sites/simplemw/deploys/tags/Spring/">#Spring</a>
+        <a href="/tags/Spring/">#Spring</a>
       
-        <a href="/sites/simplemw/deploys/tags/Sentinel/">#Sentinel</a>
+        <a href="/tags/Sentinel/">#Sentinel</a>
       
     </div>
   
@@ -384,7 +384,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>整合sentinel</div>
-      <div>https://app.netlify.com/sites/simplemw/deploys/2021/08/03/springboot-sentinel/</div>
+      <div>https://simplemw.github.io/2021/08/03/springboot-sentinel/</div>
     </div>
     <div class="license-meta">
       
@@ -428,7 +428,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/sites/simplemw/deploys/2021/09/22/spring-%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/" title="获取配置文件参数">
+                      <a href="/2021/09/22/spring-%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/" title="获取配置文件参数">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">获取配置文件参数</span>
                         <span class="visible-mobile">上一篇</span>
@@ -438,7 +438,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/sites/simplemw/deploys/2021/07/06/springBoot-flowable/" title="整合flowable-model">
+                      <a href="/2021/07/06/springBoot-flowable/" title="整合flowable-model">
                         <span class="hidden-mobile">整合flowable-model</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -565,15 +565,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/sites/simplemw/deploys/js/events.js" ></script>
-<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -672,7 +672,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -680,7 +680,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

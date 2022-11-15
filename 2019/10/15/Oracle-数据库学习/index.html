@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/sites/simplemw/deploys/img/fluid.png">
-  <link rel="icon" href="/sites/simplemw/deploys/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="用户、表空间、schema  用户，用户是用来连接和访问数据库  表空间，数据存储的实际物理空间 (理解方面:一个表中的数据可能是存在几个表空间中的） 注：临时表空间是用来 做排序操作，查询视图等操作的临时运行空间，运行完成后自动清理临时对象  schema Oracle中，创建一个用户默认创建一个缺省的同名schema，一个用户对应一个schema 理解：创建一个schema就是创建一个对象，该">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle数据库创建">
-<meta property="og:url" content="https://app.netlify.com/sites/simplemw/deploys/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:url" content="https://simplemw.github.io/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="SimpleMw&#39;s Blog">
 <meta property="og:description" content="用户、表空间、schema  用户，用户是用来连接和访问数据库  表空间，数据存储的实际物理空间 (理解方面:一个表中的数据可能是存在几个表空间中的） 注：临时表空间是用来 做排序操作，查询视图等操作的临时运行空间，运行完成后自动清理临时对象  schema Oracle中，创建一个用户默认创建一个缺省的同名schema，一个用户对应一个schema 理解：创建一个schema就是创建一个对象，该">
 <meta property="og:locale" content="zh_CN">
@@ -55,12 +55,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/sites/simplemw/deploys/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/sites/simplemw/deploys/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -69,15 +69,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"app.netlify.com","root":"/sites/simplemw/deploys/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/sites/simplemw/deploys/local-search.xml"};
+    var CONFIG = {"hostname":"simplemw.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/sites/simplemw/deploys/js/utils.js" ></script>
-  <script  src="/sites/simplemw/deploys/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -94,7 +94,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/sites/simplemw/deploys/">
+    <a class="navbar-brand" href="/">
       <strong>SimpleMw&#39;s Blog</strong>
     </a>
 
@@ -113,7 +113,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -125,7 +125,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -137,7 +137,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -149,7 +149,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -161,7 +161,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -173,7 +173,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/sites/simplemw/deploys/links/">
+              <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
@@ -202,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/sites/simplemw/deploys/img/default.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -361,9 +361,9 @@
 </ul>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sqlldr 用户/密码@ip:端口/数据库的sid <span class="hljs-attribute">control</span>=ctl执行的文件名 <span class="hljs-attribute">log</span>=日志打印的文件名<br></code></pre></td></tr></table></figure>
 
-<p>eg：sqlldr wpuse&#x2F;<a href="mailto:&#x71;&#119;&#x65;&#x72;&#49;&#x31;&#x31;&#49;&#x40;&#x31;&#x32;&#x37;&#x2e;&#x30;&#x2e;&#48;&#46;&#x31;">&#x71;&#119;&#x65;&#x72;&#49;&#x31;&#x31;&#49;&#x40;&#x31;&#x32;&#x37;&#x2e;&#x30;&#x2e;&#48;&#46;&#x31;</a>:1521&#x2F;orcl control&#x3D;sqlload.ctl log&#x3D;sqlload.out</p>
+<p>eg：sqlldr wpuse&#x2F;<a href="mailto:&#113;&#119;&#101;&#x72;&#49;&#x31;&#x31;&#49;&#x40;&#49;&#x32;&#x37;&#46;&#48;&#x2e;&#x30;&#x2e;&#x31;">&#113;&#119;&#101;&#x72;&#49;&#x31;&#x31;&#49;&#x40;&#49;&#x32;&#x37;&#46;&#48;&#x2e;&#x30;&#x2e;&#x31;</a>:1521&#x2F;orcl control&#x3D;sqlload.ctl log&#x3D;sqlload.out</p>
 <p>eg：</p>
-<p>sqlldr afa&#x2F;<a href="mailto:&#x61;&#x66;&#x61;&#x40;&#49;&#55;&#50;&#46;&#x33;&#49;&#46;&#50;&#x33;&#49;&#46;&#49;&#54;&#57;">&#x61;&#x66;&#x61;&#x40;&#49;&#55;&#50;&#46;&#x33;&#49;&#46;&#50;&#x33;&#49;&#46;&#49;&#54;&#57;</a>:1521&#x2F;orcl control&#x3D;sqlload_tro.ctl log&#x3D;sqlload.out</p>
+<p>sqlldr afa&#x2F;<a href="mailto:&#x61;&#102;&#x61;&#64;&#x31;&#55;&#x32;&#46;&#x33;&#x31;&#x2e;&#x32;&#51;&#x31;&#46;&#49;&#54;&#x39;">&#x61;&#102;&#x61;&#64;&#x31;&#55;&#x32;&#46;&#x33;&#x31;&#x2e;&#x32;&#51;&#x31;&#46;&#49;&#54;&#x39;</a>:1521&#x2F;orcl control&#x3D;sqlload_tro.ctl log&#x3D;sqlload.out</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">LOAD</span> DATA<br>infile <span class="hljs-string">&#x27;文件名地址&#x27;</span><br><span class="hljs-keyword">into</span> <span class="hljs-keyword">table</span> 导入的表名<br>(<br>字段名<span class="hljs-number">1</span>(即列名) terminated <span class="hljs-keyword">by</span> 分割方式(whitespace表示空格),<br>字段名<span class="hljs-number">2</span>(即列名) terminated <span class="hljs-keyword">by</span> whitespace,<br>字段名<span class="hljs-number">3</span>(即列名) terminated <span class="hljs-keyword">by</span> whitespace,<br>字段名<span class="hljs-number">4</span>(即列名) terminated <span class="hljs-keyword">by</span> whitespace<br>)<br></code></pre></td></tr></table></figure>
 
 <p>eg：</p>
@@ -451,12 +451,12 @@
     
       <span class="category-chain">
         
-  <a href="/sites/simplemw/deploys/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
   
   
     <span>></span>
     
-  <a href="/sites/simplemw/deploys/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/" class="category-chain-item">Oracle相关</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/" class="category-chain-item">Oracle相关</a>
   
   
 
@@ -473,7 +473,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/sites/simplemw/deploys/tags/Oracle/">#Oracle</a>
+        <a href="/tags/Oracle/">#Oracle</a>
       
     </div>
   
@@ -486,7 +486,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Oracle数据库创建</div>
-      <div>https://app.netlify.com/sites/simplemw/deploys/2019/10/15/Oracle-数据库学习/</div>
+      <div>https://simplemw.github.io/2019/10/15/Oracle-数据库学习/</div>
     </div>
     <div class="license-meta">
       
@@ -530,7 +530,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/sites/simplemw/deploys/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" title="java基础POI引用">
+                      <a href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" title="java基础POI引用">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">java基础POI引用</span>
                         <span class="visible-mobile">上一篇</span>
@@ -540,7 +540,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/sites/simplemw/deploys/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" title="Oracle触发器">
+                      <a href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" title="Oracle触发器">
                         <span class="hidden-mobile">Oracle触发器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -667,15 +667,15 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/sites/simplemw/deploys/js/events.js" ></script>
-<script  src="/sites/simplemw/deploys/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
 
 
 
   
-    <script  src="/sites/simplemw/deploys/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -774,7 +774,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/sites/simplemw/deploys/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -782,7 +782,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/sites/simplemw/deploys/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
