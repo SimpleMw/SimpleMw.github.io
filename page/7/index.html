@@ -1,1042 +1,416 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Wp">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SimpleMw's Blog</title><meta name="author" content="WP"><meta name="copyright" content="WP"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="SimpleMw&#39;s Blog">
 <meta property="og:url" content="https://simplemw.github.io/page/7/index.html">
 <meta property="og:site_name" content="SimpleMw&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Wp">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>SimpleMw&#39;s Blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"simplemw.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta property="og:image" content="https://simplemw.github.io/img/touxiang.png">
+<meta property="article:author" content="WP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://simplemw.github.io/img/touxiang.png"><link rel="shortcut icon" href="/img/touxiang.png"><link rel="canonical" href="https://simplemw.github.io/page/7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>SimpleMw&#39;s Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                友链
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="- To see the world, things dangerous to come to, to see behind walls, to draw closer, to find each other and to feel, that is the purpose of life."></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E5%9F%BA%E7%A1%80%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="基础小点杂">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E5%9F%BA%E7%A1%80%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-          基础小点杂
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E5%9F%BA%E7%A1%80%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-        <div>
-          Scanner 1Scanner scanner = new Scanner(System.in);    将控制台获取的信息用scanner对象容器进行接收，使用对象即可以操作输入信息 循环 break 和 continue break 跳出循环，无下次循环 continue 终止当前循环，有下次循环 方法重载 同一个类终，方法名相同，参数列表不同 方法重写 子类继承父类时，对父类的方法进行重新
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-01 08:34" pubdate>
-              2020-10-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/" class="category-chain-item">java基础相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">#java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="java基本数据类型">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
-          java基本数据类型
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
-        <div>
-          基本数据类型      整数型  byte short int long     long在给值的时候加L   浮点型  flout double    flout在给值的时候加F 由于浮点型表示一个数的时候是无限接近，在进行运算时一般不用浮点型来表示 例如 表示一个人的资质金额的时候 使用 bigdecima     字符型 char 布尔型 Boolean   变量初始值 基本数据类型 整数
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-01 08:34" pubdate>
-              2020-10-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/" class="category-chain-item">java基础相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">#java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="java基础POI引用">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" target="_self">
-          java基础POI引用
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" target="_self">
-        <div>
-          常规POI使用依赖12345678910&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi&lt;/artifactId&gt;    &lt;version&gt;4.1.0&lt;/version&gt;&lt;/dependency&gt;&lt;depend
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-01-26 08:34" pubdate>
-              2020-01-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/" class="category-chain-item">java基础相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">#java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="Oracle数据库创建">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" target="_self">
-          Oracle数据库创建
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" target="_self">
-        <div>
-          用户、表空间、schema  用户，用户是用来连接和访问数据库  表空间，数据存储的实际物理空间 (理解方面:一个表中的数据可能是存在几个表空间中的） 注：临时表空间是用来 做排序操作，查询视图等操作的临时运行空间，运行完成后自动清理临时对象  schema Oracle中，创建一个用户默认创建一个缺省的同名schema，一个用户对应一个schema 理解：创建一个schema就是创建一个对象，该
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-15 08:48" pubdate>
-              2019-10-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/" class="category-chain-item">Oracle相关</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">#Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="Oracle触发器">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
-          Oracle触发器
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" target="_self">
-        <div>
-          触发器 触发器：数据库发生的事件作为另一个事件发生的触发的设计  分类：根据触发事件不同分为三类  数据操作语句（DML） 数据定义语句（DDL） 数据库事件   DML触发器 监听数据操作语句 数据操作语句insert、delete、select、update四种操作语句执行时触发执行另外一个事件  补充INSTEAD OF触发器(DML触发器的扩展) 监听数据操作语句 当数据操作语句inser
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-15 08:48" pubdate>
-              2019-10-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/" class="category-chain-item">Oracle相关</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">#Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/07/markdown%E8%AF%AD%E6%B3%95/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="markdown语法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/07/markdown%E8%AF%AD%E6%B3%95/" target="_self">
-          markdown语法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/07/markdown%E8%AF%AD%E6%B3%95/" target="_self">
-        <div>
-          标题 一级标题二级标题三级标题四级标题1# 一级标题## 二级标题### 三级标题#### 四级标题···  编号  句子1 句子2  1- 句子1- 句子2  句子特效 加粗斜体句子 加粗句子 斜体句子 加删除线句子 1***加粗斜体句子*****加粗句子***斜体句子*~~加删除线句子~~  表格    表头1 表头2 表头3    数据1 数据2 数据3   数据1.1 数据2.1 数据3
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-07 08:34" pubdate>
-              2019-10-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/markdown%E7%9B%B8%E5%85%B3/" class="category-chain-item">markdown相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/markdown/">#markdown</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/04/hexo-%E7%BD%91%E6%98%93%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%B7%BB%E5%8A%A0/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="网易背景音乐添加">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/04/hexo-%E7%BD%91%E6%98%93%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%B7%BB%E5%8A%A0/" target="_self">
-          网易背景音乐添加
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/04/hexo-%E7%BD%91%E6%98%93%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%B7%BB%E5%8A%A0/" target="_self">
-        <div>
-          生成单条歌曲 去网易云音乐挑选一首能播放的歌曲  歌的详细信息的图片下有一个 生成外链播放器。点开调节里面的参数，确定后获取 html代码中的代码，如 1&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 h
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-04 23:56" pubdate>
-              2019-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo%E7%9B%B8%E5%85%B3/" class="category-chain-item">hexo相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">#hexo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/04/hexo-%E6%B7%BB%E5%8A%A0%E7%9C%8B%E6%9D%BF%E5%8A%A8%E7%94%BB%E7%89%B9%E6%95%88/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="添加看板动画特效">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/04/hexo-%E6%B7%BB%E5%8A%A0%E7%9C%8B%E6%9D%BF%E5%8A%A8%E7%94%BB%E7%89%B9%E6%95%88/" target="_self">
-          添加看板动画特效
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/04/hexo-%E6%B7%BB%E5%8A%A0%E7%9C%8B%E6%9D%BF%E5%8A%A8%E7%94%BB%E7%89%B9%E6%95%88/" target="_self">
-        <div>
-          安装依赖 pm install –save hexo-helper-live2d   注：卸载依赖：npm uninstall hexo-helper-live2d 依赖可以在 主目录的 package.json中查看  选择看板主题（黑猫看板主题） npm install live2d-widget-model-hijiki 注：完成后，主目录的node_moduels文件夹下有相应的文件夹
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-04 18:52" pubdate>
-              2019-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo%E7%9B%B8%E5%85%B3/" class="category-chain-item">hexo相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">#hexo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="人体时钟特效">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" target="_self">
-          人体时钟特效
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" target="_self">
-        <div>
-          介绍 人体时钟特效 1&lt;script charset=&quot;Shift_JIS&quot; src=&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.js&quot;&gt;&lt;/script&gt;  1&lt;script charset=&quot;Shift_JIS&qu
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-04 13:25" pubdate>
-              2019-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo%E7%9B%B8%E5%85%B3/" class="category-chain-item">hexo相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">#hexo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="Chic主题电线背景特效添加">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" target="_self">
-          Chic主题电线背景特效添加
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" target="_self">
-        <div>
-          第一种点线特效根据 网上大佬Next主题的教程，修改Chic主题（https://asdfv1929.github.io/2018/07/07/next-add-dynamicbg/）  添加js文件 dynamic.js ..\themes\Chic\source\js 路径下添加 123456789101112131415161718192021222324252627282930313233
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-04 12:40" pubdate>
-              2019-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo%E7%9B%B8%E5%85%B3/" class="category-chain-item">hexo相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">#hexo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SimpleMw\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-20 22:08:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
+    }
   
-    <script  src="/js/img-lazyload.js" ></script>
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SimpleMw's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">SimpleMw's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E5%9F%BA%E7%A1%80%E5%B0%8F%E7%82%B9%E6%9D%82/" title="基础小点杂"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础小点杂"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E5%9F%BA%E7%A1%80%E5%B0%8F%E7%82%B9%E6%9D%82/" title="基础小点杂">基础小点杂</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-01T00:34:36.000Z" title="发表于 2020-10-01 08:34:36">2020-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">java基础相关</a></span></div><div class="content">Scanner
+1Scanner scanner = new Scanner(System.in);  
+
+将控制台获取的信息用scanner对象容器进行接收，使用对象即可以操作输入信息
+循环 break 和 continue
+break 跳出循环，无下次循环
+continue 终止当前循环，有下次循环
+方法重载
+同一个类终，方法名相同，参数列表不同
+方法重写
+子类继承父类时，对父类的方法进行重新覆写
+方法名、返回值类型、形参相同；访问权限&gt;&#x3D;重写前；抛出异常&lt;&#x3D;重写前
+可变参数
+一个方法只能有一个可变参数
+可变参数只能在末尾
+1(String str,String ... str1)
+
+用 …表示
+数组  数组的大小是不可变的
+定义数组
+12int[] numbers = new int[4];int numbers1[] = &#123;1,2,3,4&#125;;
+
+数组起始下标为0
+堆栈
+栈：声明的名字存在 栈中  main()方法是存在栈里面的，基本数据类型是存在栈中的
+堆：new创建的时候开辟内存空间  也即对象是存在堆中的
+构造器
+
+构造器 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="java基本数据类型"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java基本数据类型"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/10/01/java%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="java基本数据类型">java基本数据类型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-01T00:34:36.000Z" title="发表于 2020-10-01 08:34:36">2020-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">java基础相关</a></span></div><div class="content">
+基本数据类型    
+
+整数型  byte short int long    
+long在给值的时候加L
+
+
+浮点型  flout double   
+flout在给值的时候加F
+由于浮点型表示一个数的时候是无限接近，在进行运算时一般不用浮点型来表示
+例如 表示一个人的资质金额的时候 使用 bigdecima
 
 
 
 
-  <script  src="/js/local-search.js" ></script>
+字符型 char
+布尔型 Boolean
+
+
+变量初始值
+基本数据类型 整数型0 浮点型0.0 布尔型false 字符型u0000
+引用数据类型 null
+
+精度  
+单精度浮点数在机内存占4个字节    float 8位有效数字(不带小数点，且最前面的0不算)
+双精度浮点数在机内存占8个字节	double  17位有效数字(不带小数点，0-1之间时前面的0要算)
+
+整数型 原码，反码，补码
+反码 除符号位所有的0–&gt;1 1–&gt;0
+补码 反码加1
+注：反码补码出现原因，计算负数相加， 解决 +0和-0的问题，乘法也能转为加法，除法转为减法再转为加法，即四则运算全可转为加法运算
+
+类型转换 
+
+自动类型转换    低–&gt;高
+
+强制类型转换    高–& ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" title="java基础POI引用"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java基础POI引用"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/26/java%E5%9F%BA%E7%A1%80-Poi/" title="java基础POI引用">java基础POI引用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-26T00:34:36.000Z" title="发表于 2020-01-26 08:34:36">2020-01-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">java基础相关</a></span></div><div class="content">常规POI使用依赖12345678910&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi&lt;/artifactId&gt;    &lt;version&gt;4.1.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;    &lt;version&gt;4.1.0&lt;/version&gt;&lt;/dependency&gt;
+
+导入controller123456@PostMapping(&quot;import&quot;)@ApiOperation(value = &quot;批量导入&quot;, notes = &quot;批量导入&quot;)@OperLog(operModu ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" title="Oracle数据库创建"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Oracle数据库创建"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/15/Oracle-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" title="Oracle数据库创建">Oracle数据库创建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-15T00:48:16.000Z" title="发表于 2019-10-15 08:48:16">2019-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/">Oracle相关</a></span></div><div class="content">用户、表空间、schema
+
+用户，用户是用来连接和访问数据库
+
+表空间，数据存储的实际物理空间 (理解方面:一个表中的数据可能是存在几个表空间中的）
+注：临时表空间是用来 做排序操作，查询视图等操作的临时运行空间，运行完成后自动清理临时对象
+
+schema
+Oracle中，创建一个用户默认创建一个缺省的同名schema，一个用户对应一个schema
+理解：创建一个schema就是创建一个对象，该对象将  某些表或者视图关联起来，方便在使用时直接使用schema就能找到
+
+创建用户
+
+
+1create user 用户名 identified by 密码 default tablespace 表空间名;
+
+eg：create user wpuse identified by qwer1111;可以指定表空间，也可以不指定表空间
+
+删除用户
+
+1drop user 用户名 cascade;
+
+
+给用户授权
+
+语法：GRANT 权限1,权限2,权限3 on 表名 to 用户名;
+123GRANT CONNECT, RESOURCE, DBA TO 用户名;    --- 授登录权限GRANT ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" title="Oracle触发器"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Oracle触发器"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/15/Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8/" title="Oracle触发器">Oracle触发器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-15T00:48:16.000Z" title="发表于 2019-10-15 08:48:16">2019-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle%E7%9B%B8%E5%85%B3/">Oracle相关</a></span></div><div class="content">触发器
+触发器：数据库发生的事件作为另一个事件发生的触发的设计
+
+分类：根据触发事件不同分为三类
+
+数据操作语句（DML）
+数据定义语句（DDL）
+数据库事件
+
+
+DML触发器
+监听数据操作语句
+数据操作语句insert、delete、select、update四种操作语句执行时触发执行另外一个事件
+
+补充INSTEAD OF触发器(DML触发器的扩展)
+监听数据操作语句
+当数据操作语句insert、delete、select、update四种操作语句要执行时,用另外的事件执行去替代被监听的语句(即被监听的事件不执行，执行替代后的事件)
+
+DDL触发器
+监听数据定义语句
+执行DDL语句时触发，可以监听表的创建
+
+数据库事件触发器
+监听数据库事件
+可以监听数据库启动或者关闭、用户登录或者登出
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/10/07/markdown%E8%AF%AD%E6%B3%95/" title="markdown语法"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="markdown语法"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/07/markdown%E8%AF%AD%E6%B3%95/" title="markdown语法">markdown语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-07T00:34:36.000Z" title="发表于 2019-10-07 08:34:36">2019-10-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/markdown%E7%9B%B8%E5%85%B3/">markdown相关</a></span></div><div class="content">
+标题
+一级标题二级标题三级标题四级标题1# 一级标题## 二级标题### 三级标题#### 四级标题···
+
+编号
+
+句子1
+句子2
+
+1- 句子1- 句子2
+
+句子特效
+加粗斜体句子
+加粗句子
+斜体句子
+加删除线句子
+1***加粗斜体句子*****加粗句子***斜体句子*~~加删除线句子~~
+
+表格
 
 
 
+表头1
+表头2
+表头3
 
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+
+数据1
+数据2
+数据3
 
 
-  
+数据1.1
+数据2.1
+数据3.1
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+
+1|表头1|表头2|表头3||---|---|---||数据1|数据2|数据3||数据1.1|数据2.1|数据3.1|
+
+图片
+
+1![给添加的图片命名](图片路径带后缀)
+
+超链接
+百度
+1[百度](www.baidu.com)
+
+引用
+
+一级引用句子
+
+
+
+二级引用句子
+
+三级引用句子
+
+
+
+1&gt; 引用句子&gt;&gt; 二级引用句子&gt;&gt;&gt; 三级引用句子
+
+分割线
+
+1---
+
+代码
+1不同格式代码
+
+1​```代码格式不同格式代码
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2019/10/04/hexo-%E7%BD%91%E6%98%93%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%B7%BB%E5%8A%A0/" title="网易背景音乐添加"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网易背景音乐添加"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/04/hexo-%E7%BD%91%E6%98%93%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%B7%BB%E5%8A%A0/" title="网易背景音乐添加">网易背景音乐添加</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-04T15:56:34.000Z" title="发表于 2019-10-04 23:56:34">2019-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo%E7%9B%B8%E5%85%B3/">hexo相关</a></span></div><div class="content">生成单条歌曲
+去网易云音乐挑选一首能播放的歌曲
+
+歌的详细信息的图片下有一个 生成外链播放器。点开调节里面的参数，确定后获取 html代码中的代码，如
+1&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=431610359&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+直接在html中粘贴就能直接生成
+注：markdown文件中能直接使用html
+
+
+生成歌单，可上一首下一首
+在网易云上新建一个歌单，将能单条生成外链的歌曲放进去
+
+分享歌单（不分享不会出现外链接）
+
+返回就会在歌曲列表上方出现 生成外链播放器，如上面一样调节参数后，获取 html代码
+
+直接使用
+1&lt;iframe frameborder= ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/10/04/hexo-%E6%B7%BB%E5%8A%A0%E7%9C%8B%E6%9D%BF%E5%8A%A8%E7%94%BB%E7%89%B9%E6%95%88/" title="添加看板动画特效"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="添加看板动画特效"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/04/hexo-%E6%B7%BB%E5%8A%A0%E7%9C%8B%E6%9D%BF%E5%8A%A8%E7%94%BB%E7%89%B9%E6%95%88/" title="添加看板动画特效">添加看板动画特效</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-04T10:52:38.000Z" title="发表于 2019-10-04 18:52:38">2019-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo%E7%9B%B8%E5%85%B3/">hexo相关</a></span></div><div class="content">
+安装依赖
+pm install –save hexo-helper-live2d
+
+
+注：卸载依赖：npm uninstall hexo-helper-live2d
+依赖可以在 主目录的 package.json中查看
+
+选择看板主题（黑猫看板主题）
+npm install live2d-widget-model-hijiki
+注：完成后，主目录的node_moduels文件夹下有相应的文件夹
+
+主目录修改配置文件
+123456789101112131415161718192021222324#live2d看板动画live2d:  enable: true  scriptFrom: local  pluginRootPath: live2dw/  pluginJsPath: lib/  pluginModelPath: assets/  tagMode: false  log: false  model:    use: live2d-widget-model-hijiki  display:    superSample: 2    width: 150    height: 30 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" title="人体时钟特效"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人体时钟特效"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/04/hexo-%E4%BA%BA%E4%BD%93%E6%97%B6%E9%92%9F%E7%89%B9%E6%95%88/" title="人体时钟特效">人体时钟特效</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-04T05:25:25.000Z" title="发表于 2019-10-04 13:25:25">2019-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo%E7%9B%B8%E5%85%B3/">hexo相关</a></span></div><div class="content">介绍
+人体时钟特效
+1&lt;script charset=&quot;Shift_JIS&quot; src=&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.js&quot;&gt;&lt;/script&gt;
+
+1&lt;script charset=&quot;Shift_JIS&quot; src=&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.js&quot;&gt;&lt;/script&gt;
+
+出处：https://blog.csdn.net/itmyhome1990/article/details/39028013
+
+出现的坑，在传上码云后，打开blog出现，非安全插件问题，选确认才能显示
+解决办法，网上找到一位博主反编译后去水印的swf文件
+https://download.csdn.net/download/hxhchh/10619546
+
+
+
+应用方法 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" title="Chic主题电线背景特效添加"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chic主题电线背景特效添加"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/04/hexo-Chic%E7%82%B9%E7%BA%BF%E8%83%8C%E6%99%AF%E7%89%B9%E6%95%88%E6%B7%BB%E5%8A%A0/" title="Chic主题电线背景特效添加">Chic主题电线背景特效添加</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-04T04:40:44.000Z" title="发表于 2019-10-04 12:40:44">2019-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo%E7%9B%B8%E5%85%B3/">hexo相关</a></span></div><div class="content">第一种点线特效根据 网上大佬Next主题的教程，修改Chic主题（https://asdfv1929.github.io/2018/07/07/next-add-dynamicbg/）
+
+添加js文件 dynamic.js
+..\themes\Chic\source\js 路径下添加
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148var canvas = document ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">WP</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ESP8266/"><span class="card-category-list-name">ESP8266</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/"><span class="card-category-list-name">Mybatis</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/Mybatis/"><span class="card-category-list-name">Mybatis</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/Mybatisplus/"><span class="card-category-list-name">Mybatisplus</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Quartz/"><span class="card-category-list-name">Quartz</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/RabbitMQ/"><span class="card-category-list-name">RabbitMQ</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spring/"><span class="card-category-list-name">Spring</span><span class="card-category-list-count">20</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spring/Spring-Cloud/"><span class="card-category-list-name">Spring Cloud</span><span class="card-category-list-count">2</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/mqtt/" style="font-size: 1.15em; color: rgb(94, 136, 12)">mqtt</a><a href="/tags/SpringBoot/" style="font-size: 1.39em; color: rgb(196, 86, 145)">SpringBoot</a><a href="/tags/Flowable/" style="font-size: 1.21em; color: rgb(155, 47, 116)">Flowable</a><a href="/tags/Oracle/" style="font-size: 1.21em; color: rgb(16, 155, 57)">Oracle</a><a href="/tags/Quartz/" style="font-size: 1.15em; color: rgb(177, 62, 91)">Quartz</a><a href="/tags/hexo/" style="font-size: 1.33em; color: rgb(147, 8, 141)">hexo</a><a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.15em; color: rgb(29, 59, 125)">消息中间件</a><a href="/tags/java/" style="font-size: 1.45em; color: rgb(125, 19, 65)">java</a><a href="/tags/Optional/" style="font-size: 1.15em; color: rgb(6, 119, 162)">Optional</a><a href="/tags/JVM/" style="font-size: 1.15em; color: rgb(117, 62, 39)">JVM</a><a href="/tags/%E9%94%81/" style="font-size: 1.15em; color: rgb(68, 17, 159)">锁</a><a href="/tags/Mysql/" style="font-size: 1.27em; color: rgb(105, 104, 132)">Mysql</a><a href="/tags/markdown/" style="font-size: 1.15em; color: rgb(131, 39, 136)">markdown</a><a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: rgb(195, 96, 3)">java基础</a><a href="/tags/python%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: rgb(78, 90, 30)">python基础</a><a href="/tags/Spring/" style="font-size: 1.39em; color: rgb(196, 53, 13)">Spring</a><a href="/tags/Eureka/" style="font-size: 1.15em; color: rgb(110, 200, 70)">Eureka</a><a href="/tags/Hystrix/" style="font-size: 1.15em; color: rgb(74, 35, 102)">Hystrix</a><a href="/tags/Feign/" style="font-size: 1.15em; color: rgb(7, 89, 59)">Feign</a><a href="/tags/Gateway/" style="font-size: 1.15em; color: rgb(79, 183, 109)">Gateway</a><a href="/tags/Maven/" style="font-size: 1.15em; color: rgb(141, 21, 145)">Maven</a><a href="/tags/Mybatis/" style="font-size: 1.21em; color: rgb(129, 168, 189)">Mybatis</a><a href="/tags/Mybatisplus/" style="font-size: 1.15em; color: rgb(183, 71, 39)">Mybatisplus</a><a href="/tags/Nacos/" style="font-size: 1.15em; color: rgb(113, 149, 39)">Nacos</a><a href="/tags/security/" style="font-size: 1.15em; color: rgb(79, 41, 27)">security</a><a href="/tags/Swagger3/" style="font-size: 1.15em; color: rgb(15, 116, 134)">Swagger3</a><a href="/tags/Swagger/" style="font-size: 1.15em; color: rgb(34, 90, 176)">Swagger</a><a href="/tags/sqlserver/" style="font-size: 1.15em; color: rgb(161, 42, 53)">sqlserver</a><a href="/tags/Sentinel/" style="font-size: 1.15em; color: rgb(21, 165, 120)">Sentinel</a><a href="/tags/Websocket/" style="font-size: 1.15em; color: rgb(167, 41, 23)">Websocket</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" style="font-size: 1.21em; color: rgb(153, 151, 155)">服务部署</a><a href="/tags/Docker/" style="font-size: 1.15em; color: rgb(175, 15, 79)">Docker</a><a href="/tags/Datasource/" style="font-size: 1.15em; color: rgb(77, 47, 29)">Datasource</a><a href="/tags/windows%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8jar/" style="font-size: 1.15em; color: rgb(13, 119, 117)">windows开机启动jar</a><a href="/tags/Redis/" style="font-size: 1.21em; color: rgb(91, 99, 80)">Redis</a><a href="/tags/Zookeeper/" style="font-size: 1.15em; color: rgb(95, 172, 158)">Zookeeper</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 1.21em; color: rgb(91, 139, 118)">分布式锁</a><a href="/tags/nfs/" style="font-size: 1.15em; color: rgb(144, 31, 35)">nfs</a><a href="/tags/%E6%BF%80%E6%B4%BB/" style="font-size: 1.15em; color: rgb(179, 113, 199)">激活</a><a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1.15em; color: rgb(115, 168, 153)">消息队列</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By WP</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["To see the world,","things dangerous to come to,","to see behind walls,","to draw closer,","to find each other and to feel,","that is the purpose of life."],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = 'To see the world,'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

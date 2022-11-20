@@ -1,1085 +1,339 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Wp">
-  <meta name="keywords" content="">
-  
-    <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SimpleMw's Blog</title><meta name="author" content="WP"><meta name="copyright" content="WP"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="SimpleMw&#39;s Blog">
 <meta property="og:url" content="https://simplemw.github.io/page/2/index.html">
 <meta property="og:site_name" content="SimpleMw&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Wp">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>SimpleMw&#39;s Blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"simplemw.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":true,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta property="og:image" content="https://simplemw.github.io/img/touxiang.png">
+<meta property="article:author" content="WP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://simplemw.github.io/img/touxiang.png"><link rel="shortcut icon" href="/img/touxiang.png"><link rel="canonical" href="https://simplemw.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>SimpleMw&#39;s Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                友链
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="- To see the world, things dangerous to come to, to see behind walls, to draw closer, to find each other and to feel, that is the purpose of life."></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/09/java%E5%9F%BA%E7%A1%80-jvm/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="JVM">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/09/java%E5%9F%BA%E7%A1%80-jvm/" target="_self">
-          JVM
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/04/09/java%E5%9F%BA%E7%A1%80-jvm/" target="_self">
-        <div>
-          堆 存对象  线程栈 每有一个线程就会从线程栈中划分一块区域  栈帧 每执行一个方法就会在线程栈中分配一块区域  操作数栈 将临时数据做加减乘除的操作的地方  局部变量(指针指向堆) 存储临时数据(变量)  动态链接 通过动态链接去链接到方法区，拿到方法区的方法  方法出口 链接到上层调用      方法区(元空间)（指针指向堆）  常量 静态变量 类信息   程序计数器 用于记录执行当前所到的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-09 13:25" pubdate>
-              2022-04-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/" class="category-chain-item">java基础相关</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JVM/">#JVM</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/01/26/RabbitMq/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="RabbitMQ">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/26/RabbitMq/" target="_self">
-          RabbitMQ
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/01/26/RabbitMq/" target="_self">
-        <div>
-          场景：需要基于队列实现消息传递，保证消息不被丢弃和稳定 安装安装erlang 安装  1yum install -y epel-release  1wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm  1rpm -Uvh erlang-solutions-1.0-1.noarch.rpm  1yu
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-26 08:40" pubdate>
-              2022-01-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/RabbitMQ/" class="category-chain-item">RabbitMQ</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/">#消息中间件</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/01/18/Quartz/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="Quartz">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/18/Quartz/" target="_self">
-          Quartz
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/01/18/Quartz/" target="_self">
-        <div>
-          Timer原生实现1234567891011121314public static void main(String[] args) &#123;    //创建定时器    Timer timer = new Timer();    //创建task    TimerTask timerTask = new TimerTask() &#123;        @Override        p
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-18 08:40" pubdate>
-              2022-01-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Quartz/" class="category-chain-item">Quartz</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Quartz/">#Quartz</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/01/13/%E5%85%B6%E5%AE%83-idea%E6%97%A0%E9%99%90%E7%BB%AD%E6%9D%AF/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="IDEA无限续杯">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/13/%E5%85%B6%E5%AE%83-idea%E6%97%A0%E9%99%90%E7%BB%AD%E6%9D%AF/" target="_self">
-          IDEA无限续杯
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/01/13/%E5%85%B6%E5%AE%83-idea%E6%97%A0%E9%99%90%E7%BB%AD%E6%9D%AF/" target="_self">
-        <div>
-          idea 商店 12file -&gt; setting -&gt; plugins -&gt; installed -&gt; Manage plugin repositorieshttps://plugins.zhile.io   安装插件 1ide eval Reset  使用 12help -&gt; eval reset勾选 Auto reset before per restart -
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-13 09:00" pubdate>
-              2022-01-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%85%B6%E5%AE%83/" class="category-chain-item">其它</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%BF%80%E6%B4%BB/">#激活</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/12/03/bpmn/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="bpmn文件解释">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/03/bpmn/" target="_self">
-          bpmn文件解释
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/12/03/bpmn/" target="_self">
-        <div>
-          根节点12&lt;bpmn2:definitions xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:bpmn2=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot; xmlns:bpmndi=&quot;http://www.omg.org/spe
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-03 09:01" pubdate>
-              2021-12-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/" class="category-chain-item">SpringBoot整合</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/Flowable/" class="category-chain-item">Flowable</a>
-  
-  
-
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SpringBoot/">#SpringBoot</a>
-            
-              <a href="/tags/Flowable/">#Flowable</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/11/17/MQTT/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="mqtt">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/17/MQTT/" target="_self">
-          mqtt
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/11/17/MQTT/" target="_self">
-        <div>
-          依赖12345&lt;dependency&gt;    &lt;groupId&gt;org.eclipse.paho&lt;/groupId&gt;    &lt;artifactId&gt;org.eclipse.paho.client.mqttv3&lt;/artifactId&gt;    &lt;version&gt;1.2.0&lt;/version&gt;&lt;/dependen
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-17 18:06" pubdate>
-              2021-11-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/mqtt/" class="category-chain-item">mqtt</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/mqtt/">#mqtt</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/11/11/springBoot-security/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="security">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/11/springBoot-security/" target="_self">
-          security
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/11/11/springBoot-security/" target="_self">
-        <div>
-          使用场景：用于访问权限的限制于管理 过程：通过用户名查询密码和角色，校验密码和判断该url是否允许该角色访问 引用Security准备 依赖  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&lt;dependency&gt;    &lt;groupId&g
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-11 11:11" pubdate>
-              2021-11-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/" class="category-chain-item">SpringBoot整合</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/security/" class="category-chain-item">security</a>
-  
-  
-
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SpringBoot/">#SpringBoot</a>
-            
-              <a href="/tags/security/">#security</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/10/14/springBoot-validation/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="validation参数验证">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/14/springBoot-validation/" target="_self">
-          validation参数验证
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/10/14/springBoot-validation/" target="_self">
-        <div>
-          原理 依赖  1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;&lt;/dependency&gt;   配置handler  12345678
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-14 19:01" pubdate>
-              2021-10-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E5%9F%BA%E7%A1%80/" class="category-chain-item">SpringBoot基础</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SpringBoot/">#SpringBoot</a>
-            
-              <a href="/tags/Spring/">#Spring</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/10/14/spring-%E6%8A%9B%E5%87%BA%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="抛出全局异常">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/14/spring-%E6%8A%9B%E5%87%BA%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8/" target="_self">
-          抛出全局异常
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/10/14/spring-%E6%8A%9B%E5%87%BA%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8/" target="_self">
-        <div>
-          异常的分类Exception分为运行时异常和非运行时异常 运行时异常：编译时不会报错，会在运行中报错，若空指针异常 非运行时异常：在编译时报错，如 IOException 全局异常抓取抛出 自定义类设置校验规则  12345678910111213141516171819202122232425//继承运行时异常类public class ThrowException extends Runtim
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-14 18:34" pubdate>
-              2021-10-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Spring/SpringBoot%E5%9F%BA%E7%A1%80/" class="category-chain-item">SpringBoot基础</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SpringBoot/">#SpringBoot</a>
-            
-              <a href="/tags/Spring/">#Spring</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-          <img src="/img/articl.jpg" srcset="/img/loading.gif" lazyload alt="sqlserver小点杂">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-          sqlserver小点杂
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/" target="_self">
-        <div>
-          时间相加 语法  1DATEADD(type,number,date)   常用类型     年 季度 月 周 日 时 分 秒 毫秒    yy或yyyy qq或q mm或m wk或ww dd或d hh mi或n ss或s ms    举例  1select DATEADD(ss,1,&#x27;2021-02-27 15:05:33.0&#x27;)   给用户创建function权限  1SE
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-13 09:34" pubdate>
-              2021-10-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/sqlserver%E7%9B%B8%E5%85%B3/" class="category-chain-item">sqlserver相关</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/sqlserver/">#sqlserver</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SimpleMw\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-20 22:08:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
+    }
   
-    <script  src="/js/img-lazyload.js" ></script>
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">SimpleMw's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">SimpleMw's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/04/09/java%E5%9F%BA%E7%A1%80-jvm/" title="JVM"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/09/java%E5%9F%BA%E7%A1%80-jvm/" title="JVM">JVM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-09T05:25:25.000Z" title="发表于 2022-04-09 13:25:25">2022-04-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/java%E5%9F%BA%E7%A1%80%E7%9B%B8%E5%85%B3/">java基础相关</a></span></div><div class="content">
+堆
+存对象
+
+线程栈
+每有一个线程就会从线程栈中划分一块区域
+
+栈帧
+每执行一个方法就会在线程栈中分配一块区域
+
+操作数栈
+将临时数据做加减乘除的操作的地方
+
+局部变量(指针指向堆)
+存储临时数据(变量)
+
+动态链接
+通过动态链接去链接到方法区，拿到方法区的方法
+
+方法出口
+链接到上层调用
 
 
 
 
-  <script  src="/js/local-search.js" ></script>
+
+方法区(元空间)（指针指向堆）
+
+常量
+静态变量
+类信息
+
+
+程序计数器
+用于记录执行当前所到的步骤(cpu的执行权限被抢走时记录当前程序的执行步骤，用于抢回权限后接着执行)
+
+本地方法栈
+native修饰的方法执行的内存空间(c、c++实现的方法)
+
+
+注:
+JVM调优的目的是减少FULL GC，因为在FULL GC的时候会STW(stop the world)，停掉当前运行的线程
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/01/26/RabbitMq/" title="RabbitMQ"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/26/RabbitMq/" title="RabbitMQ">RabbitMQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-26T00:40:27.000Z" title="发表于 2022-01-26 08:40:27">2022-01-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/RabbitMQ/">RabbitMQ</a></span></div><div class="content">场景：需要基于队列实现消息传递，保证消息不被丢弃和稳定
+安装安装erlang
+安装
+
+1yum install -y epel-release
+
+1wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
+
+1rpm -Uvh erlang-solutions-1.0-1.noarch.rpm
+
+1yum install -y erlang
+
+
+验证安装成功
+
+1erl -version
+
+安装RabitMq
+官网下载 RPM包，上传到服务器上
+
+1rpm -Uvh rabbitmq-server-3.9.12-1.el7.noarch.rpm
+
+
+启动
+
+1systemctl start rabbitmq-server
+
+
+查看状态
+
+1systemctl status rabbitmq-server
+
+
+启动控制台
+
+1rabbitmq-plugins enable rabbitmq_management
+
+
+添加用户名和密码以及设置权限
+
+参考
+123rabbitmqctl add_u ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/01/18/Quartz/" title="Quartz"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Quartz"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/18/Quartz/" title="Quartz">Quartz</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-18T00:40:27.000Z" title="发表于 2022-01-18 08:40:27">2022-01-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Quartz/">Quartz</a></span></div><div class="content">Timer原生实现1234567891011121314public static void main(String[] args) &#123;    //创建定时器    Timer timer = new Timer();    //创建task    TimerTask timerTask = new TimerTask() &#123;        @Override        public void run() &#123;            System.out.println(&quot;这是任务执行体&quot;);        &#125;    &#125;;    //从现在起推迟2秒后，每隔1秒执行    timer.schedule(timerTask, 2000, 1000);&#125;
+
+lombok注解实现
+依赖
+
+12345&lt;dependency&gt;    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;    &lt;artifactId&gt;lombok&lt;/artif ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/01/13/%E5%85%B6%E5%AE%83-idea%E6%97%A0%E9%99%90%E7%BB%AD%E6%9D%AF/" title="IDEA无限续杯"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IDEA无限续杯"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/13/%E5%85%B6%E5%AE%83-idea%E6%97%A0%E9%99%90%E7%BB%AD%E6%9D%AF/" title="IDEA无限续杯">IDEA无限续杯</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-13T01:00:02.000Z" title="发表于 2022-01-13 09:00:02">2022-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E5%AE%83/">其它</a></span></div><div class="content">idea 商店
+12file -&gt; setting -&gt; plugins -&gt; installed -&gt; Manage plugin repositorieshttps://plugins.zhile.io 
+
+安装插件
+1ide eval Reset
+
+使用
+12help -&gt; eval reset勾选 Auto reset before per restart -&gt; reset
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/03/Flowable-bpmn/" title="bpmn文件解释"><img class="post_bg" src="https://raw.githubusercontent.com/SimpleMw/image/master/city_evening_snowfall_136478_1920x1080.3ym4jo3bpzw0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bpmn文件解释"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/03/Flowable-bpmn/" title="bpmn文件解释">bpmn文件解释</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-03T01:01:01.000Z" title="发表于 2021-12-03 09:01:01">2021-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/">SpringBoot整合</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/Flowable/">Flowable</a></span></div><div class="content">根节点12&lt;bpmn2:definitions xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:bpmn2=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot; xmlns:bpmndi=&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot; xmlns:dc=&quot;http://www.omg.org/spec/DD/20100524/DC&quot; xmlns:di=&quot;http://www.omg.org/spec/DD/20100524/DI&quot; id=&quot;sample-diagram&quot; targetNamespace=&quot;http://bpmn.io/schema/bpmn&quot; xsi:schemaLocation=&quot;http://www.omg.org/spec/BPMN/20100524/MODEL B ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/17/MQTT/" title="mqtt"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mqtt"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/17/MQTT/" title="mqtt">mqtt</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-17T10:06:27.000Z" title="发表于 2021-11-17 18:06:27">2021-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/mqtt/">mqtt</a></span></div><div class="content">依赖12345&lt;dependency&gt;    &lt;groupId&gt;org.eclipse.paho&lt;/groupId&gt;    &lt;artifactId&gt;org.eclipse.paho.client.mqttv3&lt;/artifactId&gt;    &lt;version&gt;1.2.0&lt;/version&gt;&lt;/dependency&gt;
+
+服务端12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364import org.eclipse.paho.client.mqttv3.*;import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;public class MyMqttServer &#123;    public static void main(String ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/11/11/springBoot-security/" title="security"><img class="post_bg" src="https://raw.githubusercontent.com/SimpleMw/image/master/owl_bird_dreamcatcher_art_96862_1920x1080.6glvy3dtcbw0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="security"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/11/springBoot-security/" title="security">security</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-11T03:11:11.000Z" title="发表于 2021-11-11 11:11:11">2021-11-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/">SpringBoot整合</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E6%95%B4%E5%90%88/security/">security</a></span></div><div class="content">使用场景：用于访问权限的限制于管理
+过程：通过用户名查询密码和角色，校验密码和判断该url是否允许该角色访问
+引用Security准备
+依赖
+
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt;&lt;!-- mybatisplus相关依赖 --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;    &lt;versio ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/10/14/springBoot-validation/" title="validation参数验证"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="validation参数验证"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/14/springBoot-validation/" title="validation参数验证">validation参数验证</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-14T11:01:00.000Z" title="发表于 2021-10-14 19:01:00">2021-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E5%9F%BA%E7%A1%80/">SpringBoot基础</a></span></div><div class="content">原理
+依赖
+
+1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;&lt;/dependency&gt;
+
+
+配置handler
+
+1234567891011121314151617181920212223242526272829303132333435@RestControllerAdvice@Slf4jpublic class exceptionHander &#123;    /**     * 抓取自带注解的报错(校验@NotNull、@NotBlank 等)     * @param e 异常     * @return 返回信息     */    @ExceptionHandler(BindException.class)    public ReturnDto handleError(BindException e) &# ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/10/14/spring-%E6%8A%9B%E5%87%BA%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8/" title="抛出全局异常"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抛出全局异常"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/14/spring-%E6%8A%9B%E5%87%BA%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8/" title="抛出全局异常">抛出全局异常</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-14T10:34:36.000Z" title="发表于 2021-10-14 18:34:36">2021-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Spring/SpringBoot%E5%9F%BA%E7%A1%80/">SpringBoot基础</a></span></div><div class="content">异常的分类Exception分为运行时异常和非运行时异常
+运行时异常：编译时不会报错，会在运行中报错，若空指针异常
+非运行时异常：在编译时报错，如 IOException
+全局异常抓取抛出
+自定义类设置校验规则
+
+12345678910111213141516171819202122232425//继承运行时异常类public class ThrowException extends RuntimeException &#123;    //此类要继承运行时异常    public ThrowException() &#123;        super();    &#125;    public ThrowException(String message) &#123;        super(message);    &#125;    public ThrowException(String message, Throwable cause) &#123;        super(message, cause);    &#125;    public ThrowExcep ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/" title="sqlserver小点杂"><img class="post_bg" src="/img/articl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sqlserver小点杂"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/13/sqlserver-sqlserver%E5%B0%8F%E7%82%B9%E6%9D%82/" title="sqlserver小点杂">sqlserver小点杂</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-13T01:34:36.000Z" title="发表于 2021-10-13 09:34:36">2021-10-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/sqlserver%E7%9B%B8%E5%85%B3/">sqlserver相关</a></span></div><div class="content">时间相加
+语法
+
+1DATEADD(type,number,date)
+
+
+常用类型
 
 
 
 
+年
+季度
+月
+周
+日
+时
+分
+秒
+毫秒
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
 
 
-  
+yy或yyyy
+qq或q
+mm或m
+wk或ww
+dd或d
+hh
+mi或n
+ss或s
+ms
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+
+
+举例
+
+1select DATEADD(ss,1,&#x27;2021-02-27 15:05:33.0&#x27;)
+
+
+给用户创建function权限
+
+1SET GLOBAL log_bin_trust_function_creators = 1;
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">WP</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ESP8266/"><span class="card-category-list-name">ESP8266</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/"><span class="card-category-list-name">Mybatis</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/Mybatis/"><span class="card-category-list-name">Mybatis</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Mybatis/Mybatisplus/"><span class="card-category-list-name">Mybatisplus</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Quartz/"><span class="card-category-list-name">Quartz</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/RabbitMQ/"><span class="card-category-list-name">RabbitMQ</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spring/"><span class="card-category-list-name">Spring</span><span class="card-category-list-count">20</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spring/Spring-Cloud/"><span class="card-category-list-name">Spring Cloud</span><span class="card-category-list-count">2</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/mqtt/" style="font-size: 1.15em; color: rgb(94, 136, 12)">mqtt</a><a href="/tags/SpringBoot/" style="font-size: 1.39em; color: rgb(196, 86, 145)">SpringBoot</a><a href="/tags/Flowable/" style="font-size: 1.21em; color: rgb(155, 47, 116)">Flowable</a><a href="/tags/Oracle/" style="font-size: 1.21em; color: rgb(16, 155, 57)">Oracle</a><a href="/tags/Quartz/" style="font-size: 1.15em; color: rgb(177, 62, 91)">Quartz</a><a href="/tags/hexo/" style="font-size: 1.33em; color: rgb(147, 8, 141)">hexo</a><a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.15em; color: rgb(29, 59, 125)">消息中间件</a><a href="/tags/java/" style="font-size: 1.45em; color: rgb(125, 19, 65)">java</a><a href="/tags/Optional/" style="font-size: 1.15em; color: rgb(6, 119, 162)">Optional</a><a href="/tags/JVM/" style="font-size: 1.15em; color: rgb(117, 62, 39)">JVM</a><a href="/tags/%E9%94%81/" style="font-size: 1.15em; color: rgb(68, 17, 159)">锁</a><a href="/tags/Mysql/" style="font-size: 1.27em; color: rgb(105, 104, 132)">Mysql</a><a href="/tags/markdown/" style="font-size: 1.15em; color: rgb(131, 39, 136)">markdown</a><a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: rgb(195, 96, 3)">java基础</a><a href="/tags/python%E5%9F%BA%E7%A1%80/" style="font-size: 1.15em; color: rgb(78, 90, 30)">python基础</a><a href="/tags/Spring/" style="font-size: 1.39em; color: rgb(196, 53, 13)">Spring</a><a href="/tags/Eureka/" style="font-size: 1.15em; color: rgb(110, 200, 70)">Eureka</a><a href="/tags/Hystrix/" style="font-size: 1.15em; color: rgb(74, 35, 102)">Hystrix</a><a href="/tags/Feign/" style="font-size: 1.15em; color: rgb(7, 89, 59)">Feign</a><a href="/tags/Gateway/" style="font-size: 1.15em; color: rgb(79, 183, 109)">Gateway</a><a href="/tags/Maven/" style="font-size: 1.15em; color: rgb(141, 21, 145)">Maven</a><a href="/tags/Mybatis/" style="font-size: 1.21em; color: rgb(129, 168, 189)">Mybatis</a><a href="/tags/Mybatisplus/" style="font-size: 1.15em; color: rgb(183, 71, 39)">Mybatisplus</a><a href="/tags/Nacos/" style="font-size: 1.15em; color: rgb(113, 149, 39)">Nacos</a><a href="/tags/security/" style="font-size: 1.15em; color: rgb(79, 41, 27)">security</a><a href="/tags/Swagger3/" style="font-size: 1.15em; color: rgb(15, 116, 134)">Swagger3</a><a href="/tags/Swagger/" style="font-size: 1.15em; color: rgb(34, 90, 176)">Swagger</a><a href="/tags/sqlserver/" style="font-size: 1.15em; color: rgb(161, 42, 53)">sqlserver</a><a href="/tags/Sentinel/" style="font-size: 1.15em; color: rgb(21, 165, 120)">Sentinel</a><a href="/tags/Websocket/" style="font-size: 1.15em; color: rgb(167, 41, 23)">Websocket</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" style="font-size: 1.21em; color: rgb(153, 151, 155)">服务部署</a><a href="/tags/Docker/" style="font-size: 1.15em; color: rgb(175, 15, 79)">Docker</a><a href="/tags/Datasource/" style="font-size: 1.15em; color: rgb(77, 47, 29)">Datasource</a><a href="/tags/windows%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8jar/" style="font-size: 1.15em; color: rgb(13, 119, 117)">windows开机启动jar</a><a href="/tags/Redis/" style="font-size: 1.21em; color: rgb(91, 99, 80)">Redis</a><a href="/tags/Zookeeper/" style="font-size: 1.15em; color: rgb(95, 172, 158)">Zookeeper</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" style="font-size: 1.21em; color: rgb(91, 139, 118)">分布式锁</a><a href="/tags/nfs/" style="font-size: 1.15em; color: rgb(144, 31, 35)">nfs</a><a href="/tags/%E6%BF%80%E6%B4%BB/" style="font-size: 1.15em; color: rgb(179, 113, 199)">激活</a><a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1.15em; color: rgb(115, 168, 153)">消息队列</a></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By WP</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["To see the world,","things dangerous to come to,","to see behind walls,","to draw closer,","to find each other and to feel,","that is the purpose of life."],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = 'To see the world,'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
